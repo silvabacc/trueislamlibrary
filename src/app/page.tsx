@@ -1,7 +1,6 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import TrueIslam from "@/components/icons/trueislam.ico";
 import {
   Card,
   CardContent,
@@ -9,7 +8,6 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
 import { SanityDocument } from "next-sanity";
 import { useEffect, useState } from "react";
 import { getPosts } from "./actions";
@@ -18,7 +16,7 @@ import { SkeletonCard } from "@/components/ui/skeleton.card";
 import { useRouter } from "next/navigation";
 import NoData from "@/components/common/no-data";
 import MarkDown from "react-markdown";
-import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const badges = [
   { title: "🕋 Islam", value: "islam" },
@@ -78,16 +76,8 @@ export default function Home() {
   );
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <Link
-        className="flex flex-1 justify-center items-center space-x-2 cursor-pointer pb-4"
-        href="/"
-      >
-        <Image className="w-12 h-12 rounded" src={TrueIslam} alt="" />
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-          True Islam Library
-        </h1>
-      </Link>
+    <div className="flex flex-col items-center h-full">
+      <Separator className="mt-2 mb-8" />
       <div className="w-full max-w-7xl mx-auto px-4 space-y-4">
         <Input
           type="search"

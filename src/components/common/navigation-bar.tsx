@@ -7,27 +7,41 @@ import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import Header from "./header";
 
 export function NavigationBar() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="flex justify-end mt-2 space-x-2">
-      <Link href={"/studio"}>
-        <Button className="cursor-pointer">Studio</Button>
-      </Link>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      >
-        {theme === "dark" ? (
-          <Sun className="h-5 w-5" />
-        ) : (
-          <Moon className="h-5 w-5" />
-        )}
-        <span className="sr-only">Toggle theme</span>
-      </Button>
+    <div className="space-x-2 flex justify-between items-center">
+      <Header />
+      <div className="space-x-2">
+        {/* Studio - collapse to icon on small screens */}
+        <Link href="/studio">
+          <Button className="cursor-pointer hidden sm:inline">Studio</Button>
+          <Button
+            className="cursor-pointer sm:hidden"
+            size="icon"
+            variant="ghost"
+            title="Studio"
+          >
+            🛠️ {/* or a proper icon like <ToolIcon /> */}
+          </Button>
+        </Link>
+        {/* Theme Toggle - keep as icon */}
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          {theme === "dark" ? (
+            <Sun className="h-5 w-5" />
+          ) : (
+            <Moon className="h-5 w-5" />
+          )}
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </div>
     </div>
   );
 }
