@@ -18,7 +18,7 @@ export function NavigationBar() {
   const { setTheme } = useTheme();
 
   return (
-    <div className="flex justify-end mt-2 space-x-2 pb-2">
+    <div className="flex justify-end mt-2 space-x-2">
       <Link href={"/studio"}>
         <Button className="cursor-pointer">Studio</Button>
       </Link>
