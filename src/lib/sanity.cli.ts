@@ -1,12 +1,9 @@
 import { defineCliConfig } from "sanity/cli";
-import { getConfig } from "./config";
-
-const { projectId, dataset } = getConfig();
 
 export default defineCliConfig({
   api: {
-    projectId: projectId,
-    dataset: dataset,
+    projectId: "projectId",
+    dataset: "dataset",
   },
   /**
    * Enable auto-updates for studios.

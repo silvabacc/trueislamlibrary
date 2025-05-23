@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function formatElapsedDate(dateStr: string) {
   const now = new Date();
   const then = new Date(dateStr);
-  const diffInMs = now - then;
+  const diffInMs = now.getTime() - then.getTime();
 
   const seconds = Math.floor(diffInMs / 1000);
   const minutes = Math.floor(seconds / 60);

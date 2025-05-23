@@ -109,7 +109,7 @@ export default function Home() {
                   {post["tags"] && (
                     <div className="absolute pt-3 overflow-auto bottom-0 bg-gradient-to-r from-gray-500/20 to-gray-700/20 text-white text-sm px-3 py-1 w-115.5 backdrop-blur-md border border-white/10  h-14 rounded">
                       <div className="flex space-x-2">
-                        {post["tags"].map((tag) => (
+                        {(post["tags"] as string[]).map((tag) => (
                           <Badge key={tag} variant={"secondary"}>
                             {badges.find((badge) => badge.value === tag)?.title}
                           </Badge>
