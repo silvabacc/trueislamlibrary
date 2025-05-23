@@ -9,12 +9,13 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { SanityDocument } from "next-sanity";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getPosts } from "./actions";
 import { formatElapsedDate, haveIntersection } from "@/lib/utils";
 import { SkeletonCard } from "@/components/ui/skeleton.card";
 import { useRouter } from "next/navigation";
+import NoData from "@/components/common/no-data";
+import MarkDown from "react-markdown";
 
 const badges = [
   { title: "🕋 Islam", value: "islam" },
@@ -42,8 +43,9 @@ const badges = [
 export default function Home() {
   const [selectedBadges, setSelectedBadges] = useState<string[]>([]);
   const [posts, setPosts] = useState<SanityDocument[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [search, setSearch] = useState("");
 
   const onClickBadge = (value: string) => {
     setSelectedBadges((prev) =>
@@ -63,16 +65,23 @@ export default function Home() {
     fetch();
   }, []);
 
-  const filteredPosts =
+  const filteredBadgesPosts =
     selectedBadges.length > 0
       ? posts.filter((post) => haveIntersection(post["tags"], selectedBadges))
       : posts;
 
+  const filteredPosts = filteredBadgesPosts.filter((p) =>
+    p["title"].toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    //may need to bring this higher up
     <div className="flex flex-col justify-center items-center">
       <div className="w-full max-w-7xl space-y-4">
-        <Input type="search" placeholder="Search" />
+        <Input
+          type="search"
+          placeholder="Search"
+          onChange={(v) => setSearch(v.currentTarget.value)}
+        />
         <div className="flex w-full overflow-auto space-x-2 pb-2">
           {badges.map((badge) => (
             <Badge
@@ -81,7 +90,7 @@ export default function Home() {
               variant={
                 selectedBadges.includes(badge.value) ? "default" : "outline"
               }
-              className="cursor-pointer"
+              className="cursor-pointer transition-all duration-200 hover:shadow-md hover:shadow-primary/40"
             >
               {badge.title}
             </Badge>
@@ -96,12 +105,13 @@ export default function Home() {
               ))}
           </div>
         )}
+        {posts.length !== 0 && filteredPosts.length === 0 && <NoData />}
         <div className="grid md:grid-cols-3 gap-4">
           {filteredPosts.map((post, index) => {
             return (
               <div key={`${post.id}-${index}`}>
                 <Card
-                  className="max-h-[372px]"
+                  className="max-h-[372px] cursor-pointer transition-transform duration-200 hover:-translate-y-1"
                   onClick={() => router.push(`/post/${post["slug"].current}`)}
                 >
                   <CardHeader>
@@ -115,7 +125,9 @@ export default function Home() {
                     </div>
                   </CardHeader>
                   <CardContent className="relative overflow-hidden">
-                    <div className="rounded border p-4">{post["markdown"]}</div>
+                    <div className="rounded border p-4">
+                      <MarkDown>{post["markdown"]}</MarkDown>
+                    </div>
                   </CardContent>
                   <CardFooter>
                     {post["tags"] && (
@@ -139,23 +151,6 @@ export default function Home() {
           })}
         </div>
       </div>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Come to our Discord Server
-        </a>
-      </footer>
     </div>
   );
 }

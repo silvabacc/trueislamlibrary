@@ -4,6 +4,7 @@ import "./globals.css";
 import "easymde/dist/easymde.min.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationBar } from "@/components/common/navigation-bar";
+import Footer from "@/components/common/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
         >
           <NavigationBar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
