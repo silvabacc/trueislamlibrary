@@ -1,14 +1,20 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { PortableText, SanityDocument } from "next-sanity";
+import { SanityDocument } from "next-sanity";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getPosts } from "./actions";
 import { formatElapsedDate, haveIntersection } from "@/lib/utils";
 import { SkeletonCard } from "@/components/ui/skeleton.card";
+import { useRouter } from "next/navigation";
 
 const badges = [
   { title: "🕋 Islam", value: "islam" },
@@ -37,6 +43,7 @@ export default function Home() {
   const [selectedBadges, setSelectedBadges] = useState<string[]>([]);
   const [posts, setPosts] = useState<SanityDocument[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const onClickBadge = (value: string) => {
     setSelectedBadges((prev) =>
@@ -62,9 +69,10 @@ export default function Home() {
       : posts;
 
   return (
+    //may need to bring this higher up
     <div className="flex flex-col justify-center items-center">
       <div className="w-full max-w-7xl space-y-4">
-        <Input className="text-5xl" type="search" placeholder="Search" />
+        <Input type="search" placeholder="Search" />
         <div className="flex w-full overflow-auto space-x-2 pb-2">
           {badges.map((badge) => (
             <Badge
@@ -88,40 +96,48 @@ export default function Home() {
               ))}
           </div>
         )}
-        {filteredPosts.map((post, index) => {
-          return (
-            <div key={`${post.id}-${index}`}>
-              <Card className="w-lg max-h-[372px]">
-                <CardHeader>
-                  <div className="flex space-x-2">
-                    <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                      {post["title"]}
-                    </h4>
-                    <p className="text-sm pt-1 text-muted-foreground">
-                      {formatElapsedDate(post["publishedAt"].toString())}
-                    </p>
-                  </div>
-                </CardHeader>
-                <CardContent className="relative overflow-hidden">
-                  <div className="rounded border p-4 h-64">
-                    {<PortableText value={post["body"]} />}
-                  </div>
-                  {post["tags"] && (
-                    <div className="absolute pt-3 overflow-auto bottom-0 bg-gradient-to-r from-gray-500/20 to-gray-700/20 text-white text-sm px-3 py-1 w-115.5 backdrop-blur-md border border-white/10  h-14 rounded">
-                      <div className="flex space-x-2">
-                        {(post["tags"] as string[]).map((tag) => (
-                          <Badge key={tag} variant={"secondary"}>
-                            {badges.find((badge) => badge.value === tag)?.title}
-                          </Badge>
-                        ))}
-                      </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          {filteredPosts.map((post, index) => {
+            return (
+              <div key={`${post.id}-${index}`}>
+                <Card
+                  className="max-h-[372px]"
+                  onClick={() => router.push(`/post/${post["slug"].current}`)}
+                >
+                  <CardHeader>
+                    <div className="flex space-x-2">
+                      <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                        {post["title"]}
+                      </h4>
+                      <p className="text-sm pt-1 text-muted-foreground">
+                        {formatElapsedDate(post["publishedAt"].toString())}
+                      </p>
                     </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          );
-        })}
+                  </CardHeader>
+                  <CardContent className="relative overflow-hidden">
+                    <div className="rounded border p-4">{post["markdown"]}</div>
+                  </CardContent>
+                  <CardFooter>
+                    {post["tags"] && (
+                      <div className="pt-3 overflow-auto bottom-0 bg-gradient-to-r from-gray-500/20 to-gray-700/20 text-white text-sm px-3 py-1 w-115.5 backdrop-blur-md border border-white/10  h-14 rounded">
+                        <div className="flex space-x-2">
+                          {(post["tags"] as string[]).map((tag) => (
+                            <Badge key={tag} variant={"secondary"}>
+                              {
+                                badges.find((badge) => badge.value === tag)
+                                  ?.title
+                              }
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </CardFooter>
+                </Card>
+              </div>
+            );
+          })}
+        </div>
       </div>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "easymde/dist/easymde.min.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavigationBar } from "@/components/common/navigation-bar";
 
