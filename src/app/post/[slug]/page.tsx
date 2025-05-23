@@ -8,6 +8,7 @@ import { fetchPost } from "../actions";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import SkeletonCard from "./card.skeleton";
 
 export default function PostPage({
   params,
@@ -16,11 +17,14 @@ export default function PostPage({
 }) {
   const [post, setPost] = useState<SanityDocument>();
   const { slug } = use(params);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
+      setIsLoading(true);
       const post = await fetchPost(slug);
       setPost(post);
+      setIsLoading(false);
     };
     fetch();
   }, []);
@@ -28,6 +32,7 @@ export default function PostPage({
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="w-full max-w-7xl space-y-4">
+        {isLoading && <SkeletonCard />}
         <Card>
           <CardHeader>
             <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
