@@ -40,8 +40,8 @@ export default function RootLayout({
         >
           <NavigationBar />
           {children}
-          <Footer />
         </ThemeProvider>
+        <Footer />
       </body>
     </html>
   );

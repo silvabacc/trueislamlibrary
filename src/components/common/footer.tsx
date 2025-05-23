@@ -4,7 +4,7 @@ const tiktokLink = process.env.NEXT_TIKTOK_LINK;
 
 export default function Footer() {
   return (
-    <footer className=" flex  shadow rounded-lg pb-4 absolute bottom-0 right-8">
+    <footer className="flex justify-end mt-2 shadow rounded-lg mb-4">
       <ul className="flex items-center flex-wrap mb-6 md:mb-0">
         <li>
           <a
@@ -15,7 +15,7 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-      <div className="flex sm:justify-center space-x-6">
+      <div className="flex py-4 pr-4 sm:justify-center space-x-6">
         {/* Discord */}
         <a
           href={discordInviteLink}
