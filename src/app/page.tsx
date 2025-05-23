@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getPosts } from "./actions";
 import { formatElapsedDate, haveIntersection } from "@/lib/utils";
+import { SkeletonCard } from "@/components/ui/skeleton.card";
 
 const badges = [
   { title: "🕋 Islam", value: "islam" },
@@ -35,6 +36,7 @@ const badges = [
 export default function Home() {
   const [selectedBadges, setSelectedBadges] = useState<string[]>([]);
   const [posts, setPosts] = useState<SanityDocument[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const onClickBadge = (value: string) => {
     setSelectedBadges((prev) =>
@@ -46,7 +48,9 @@ export default function Home() {
 
   useEffect(() => {
     const fetch = async () => {
+      setLoading(true);
       const posts = await getPosts();
+      setLoading(false);
       setPosts(posts);
     };
     fetch();
@@ -75,16 +79,25 @@ export default function Home() {
             </Badge>
           ))}
         </div>
-        {filteredPosts.map((post) => {
+        {loading && (
+          <div className="flex space-x-4">
+            {Array(5)
+              .fill(0)
+              .map((a, index) => (
+                <SkeletonCard key={`skeleton-${index}`} />
+              ))}
+          </div>
+        )}
+        {filteredPosts.map((post, index) => {
           return (
-            <div key={post.id}>
+            <div key={`${post.id}-${index}`}>
               <Card className="w-lg max-h-[372px]">
                 <CardHeader>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex space-x-2">
                     <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                       {post["title"]}
                     </h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm pt-1 text-muted-foreground">
                       {formatElapsedDate(post["publishedAt"].toString())}
                     </p>
                   </div>
