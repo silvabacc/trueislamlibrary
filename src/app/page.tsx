@@ -107,19 +107,18 @@ export default function Home() {
         {posts.length !== 0 && filteredPosts.length === 0 && <NoData />}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full px-4">
           {filteredPosts.map((post, index) => {
-            console.log(post["body"]);
             return (
               <div key={`${post.id}-${index}`}>
                 <Card
-                  className="max-h-[372px] cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+                  className="h-[372px] cursor-pointer transition-transform duration-200 hover:-translate-y-1"
                   onClick={(e) => {
                     e.preventDefault();
                     router.push(`/post/${post["slug"].current}`);
                   }}
                 >
                   <CardHeader>
-                    <div className="flex space-x-2">
-                      <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                    <div className="flex space-x-2 justify-between ">
+                      <h4 className="scroll-m-20 text-xl font-semibold tracking-tight line-clamp-1 ">
                         {post["title"]}
                       </h4>
                       <p className="text-sm pt-1 text-muted-foreground">
@@ -128,7 +127,7 @@ export default function Home() {
                     </div>
                   </CardHeader>
                   <CardContent className="relative overflow-hidden ">
-                    <div className="rounded border p-4 wrap-break-word max-h-[150px]">
+                    <div className="rounded border p-4 wrap-break-word h-[160px]">
                       <PortableText value={post["body"]} />
                     </div>
                   </CardContent>
