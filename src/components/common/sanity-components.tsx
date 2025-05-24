@@ -66,7 +66,7 @@ export const components: PortableTextComponents = {
         : undefined;
       return (
         <a
-          className="text-blue-600 hover:text-blue-800"
+          className="text-blue-600 hover:text-blue-800 break-all"
           href={value.href}
           target="_blank"
           rel={rel}
