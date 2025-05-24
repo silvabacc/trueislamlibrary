@@ -6,7 +6,6 @@ import { Moon, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
-import Link from "next/link";
 import Header from "./header";
 import { Separator } from "../ui/separator";
 import { useRouter } from "next/navigation";

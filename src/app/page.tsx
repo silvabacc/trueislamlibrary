@@ -15,8 +15,6 @@ import { formatElapsedDate, haveIntersection } from "@/lib/utils";
 import { SkeletonCard } from "@/components/ui/skeleton.card";
 import { useRouter } from "next/navigation";
 import NoData from "@/components/common/no-data";
-import MarkDown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 const badges = [
   { title: "🕋 Islam", value: "islam" },
@@ -129,8 +127,8 @@ export default function Home() {
                       </p>
                     </div>
                   </CardHeader>
-                  <CardContent className="relative overflow-hidden">
-                    <div className="rounded border p-4 wrap-break-word">
+                  <CardContent className="relative overflow-hidden ">
+                    <div className="rounded border p-4 wrap-break-word max-h-[150px]">
                       <PortableText value={post["body"]} />
                     </div>
                   </CardContent>

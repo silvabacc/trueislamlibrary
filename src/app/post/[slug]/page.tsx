@@ -1,18 +1,14 @@
 "use client";
 
-import remarkBreaks from "remark-breaks";
 import { SanityDocument } from "next-sanity";
 import { use, useEffect, useState } from "react";
 import { fetchPost } from "../actions";
-import remarkGfm from "remark-gfm";
-import ReactMarkdown from "react-markdown";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import SkeletonCard from "./card.skeleton";
-import rehypeRaw from "rehype-raw";
 import ReactPlayer from "react-player";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 
-const components = {
+const components: PortableTextComponents = {
   types: {
     youtube: ({ value }) => {
       const { url } = value;
@@ -27,6 +23,22 @@ const components = {
   },
   block: {
     normal: ({ children }) => <p className="my-4">{children}</p>,
+  },
+  marks: {
+    link: ({ children, value }) => {
+      const rel = !value.href.startsWith("/")
+        ? "noreferrer noopener"
+        : undefined;
+      return (
+        <a
+          className="text-blue-600 hover:text-blue-800"
+          href={value.href}
+          rel={rel}
+        >
+          {children}
+        </a>
+      );
+    },
   },
 };
 
@@ -48,8 +60,6 @@ export default function PostPage({
     };
     fetch();
   }, []);
-
-  console.log(post?.["markdown"]);
 
   return (
     <div className="flex flex-col items-center h-full">
