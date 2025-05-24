@@ -2,7 +2,6 @@ import { defineField, defineType, defineArrayMember } from "sanity";
 
 import { PlayIcon } from "@sanity/icons";
 import { YouTubePreview } from "./youTubePreview";
-import { tiktokPreview } from "./tiktokPreview";
 
 export const tiktok = defineType({
   name: "tiktok",
@@ -20,9 +19,6 @@ export const tiktok = defineType({
   ],
   preview: {
     select: { title: "url" },
-  },
-  components: {
-    preview: tiktokPreview,
   },
 });
 
