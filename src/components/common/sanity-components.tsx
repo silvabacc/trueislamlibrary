@@ -33,6 +33,16 @@ export const components: PortableTextComponents = {
     },
   },
   block: {
+    h1: ({ children }) => (
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+        {children}
+      </h1>
+    ),
+    h2: ({ children }) => (
+      <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+        {children}
+      </h2>
+    ),
     normal: ({ children }) => <p className="my-4">{children}</p>,
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-gray-500 pl-4 italic text-gray-100 my-4">

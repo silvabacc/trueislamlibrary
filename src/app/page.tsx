@@ -15,6 +15,7 @@ import { formatElapsedDate, haveIntersection } from "@/lib/utils";
 import { SkeletonCard } from "@/components/ui/skeleton.card";
 import { useRouter } from "next/navigation";
 import NoData from "@/components/common/no-data";
+import { components } from "@/components/common/sanity-components";
 
 const badges = [
   { title: "🕋 Islam", value: "islam" },
@@ -128,7 +129,10 @@ export default function Home() {
                   </CardHeader>
                   <CardContent className="relative overflow-hidden ">
                     <div className="rounded border p-4 wrap-break-word h-[160px]">
-                      <PortableText value={post["body"]} />
+                      <PortableText
+                        value={post["body"]}
+                        components={components}
+                      />
                     </div>
                   </CardContent>
                   <CardFooter>
