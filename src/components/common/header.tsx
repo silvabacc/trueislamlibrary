@@ -12,6 +12,9 @@ export default function Header() {
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         True Islam Library
       </h1>
+      <span className="hidden md:inline self-end text-xs italic">
+        Made by Baver with love
+      </span>
     </Link>
   );
 }

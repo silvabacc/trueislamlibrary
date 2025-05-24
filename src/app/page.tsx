@@ -16,7 +16,7 @@ import { SkeletonCard } from "@/components/ui/skeleton.card";
 import { useRouter } from "next/navigation";
 import NoData from "@/components/common/no-data";
 import MarkDown from "react-markdown";
-import { Separator } from "@/components/ui/separator";
+import remarkGfm from "remark-gfm";
 
 const badges = [
   { title: "🕋 Islam", value: "islam" },
@@ -77,7 +77,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center h-full">
-      <Separator className="mt-2 mb-8" />
       <div className="w-full max-w-7xl mx-auto px-4 space-y-4">
         <Input
           type="search"
@@ -128,7 +127,9 @@ export default function Home() {
                   </CardHeader>
                   <CardContent className="relative overflow-hidden">
                     <div className="rounded border p-4">
-                      <MarkDown>{post["markdown"]}</MarkDown>
+                      <MarkDown remarkPlugins={[remarkGfm]}>
+                        {post["markdown"]}
+                      </MarkDown>
                     </div>
                   </CardContent>
                   <CardFooter>

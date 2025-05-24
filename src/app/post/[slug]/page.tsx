@@ -1,7 +1,6 @@
 "use client";
 
-import "github-markdown-css/github-markdown.css";
-
+import remarkBreaks from "remark-breaks";
 import { SanityDocument } from "next-sanity";
 import { use, useEffect, useState } from "react";
 import { fetchPost } from "../actions";
@@ -9,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import SkeletonCard from "./card.skeleton";
+import rehypeRaw from "rehype-raw";
 
 export default function PostPage({
   params,
@@ -29,8 +29,10 @@ export default function PostPage({
     fetch();
   }, []);
 
+  console.log(post?.["markdown"]);
+
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col  items-center h-full">
       <div className="w-full max-w-7xl space-y-4">
         {isLoading && <SkeletonCard />}
         <Card>
@@ -40,12 +42,22 @@ export default function PostPage({
             </h2>
           </CardHeader>
           <CardContent>
-            <div
-              style={{ backgroundColor: "var(--card)" }}
-              className="markdown-body p-4"
-            >
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {post?.["markdown"]}
+            <div style={{ backgroundColor: "var(--card)" }} className="p-4 ">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm, remarkBreaks]}
+                rehypePlugins={[rehypeRaw]}
+                components={{
+                  ul: ({ children }) => (
+                    <ul className="list-disc ml-12">{children}</ul>
+                  ),
+                  ol: ({ children }) => (
+                    <ol className="list-decimal ml-6">{children}</ol>
+                  ),
+                  li: ({ children }) => <li className="mb-1">{children}</li>,
+                  p: ({ children }) => <p className="py-2">{children}</p>,
+                }}
+              >
+                {post?.["markdown"] || ""}
               </ReactMarkdown>
             </div>
           </CardContent>
