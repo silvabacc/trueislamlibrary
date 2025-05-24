@@ -7,8 +7,8 @@ export const components: PortableTextComponents = {
       const { url } = value;
       return (
         <div className="flex justify-center">
-          <div className="rounded bg-(--background) p-4">
-            <ReactPlayer url={url} />
+          <div className="w-full max-w-2xl aspect-video rounded bg-background p-2">
+            <ReactPlayer url={url} width="100%" height="100%" controls />
           </div>
         </div>
       );
@@ -18,14 +18,14 @@ export const components: PortableTextComponents = {
       const match = url.match(/\/video\/(\d+)/);
       return (
         <div className="flex justify-center">
-          <div className="rounded bg-(--background) p-4 w-full">
+          <div className="w-full max-w-2xl aspect-[9/16] rounded bg-background p-2">
             <blockquote
-              className="tiktok-embed"
+              className="tiktok-embed w-full h-full"
               data-video-id={match?.[1]}
-              style={{ maxHeight: "605px", minWidth: "325px" }}
+              style={{ width: "100%", height: "100%" }}
             >
-              <section></section>{" "}
-            </blockquote>{" "}
+              <section></section>
+            </blockquote>
             <script async src="https://www.tiktok.com/embed.js"></script>
           </div>
         </div>
