@@ -9,9 +9,11 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import Header from "./header";
 import { Separator } from "../ui/separator";
+import { useRouter } from "next/navigation";
 
 export function NavigationBar() {
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
 
   return (
     <div>
@@ -19,17 +21,20 @@ export function NavigationBar() {
         <Header />
         <div className="space-x-2">
           {/* Studio - collapse to icon on small screens */}
-          <Link href="/studio">
-            <Button className="cursor-pointer hidden sm:inline">Studio</Button>
-            <Button
-              className="cursor-pointer sm:hidden"
-              size="icon"
-              variant="ghost"
-              title="Studio"
-            >
-              🛠️ {/* or a proper icon like <ToolIcon /> */}
-            </Button>
-          </Link>
+          <Button
+            className="cursor-pointer hidden sm:inline"
+            onClick={() => router.push("/studio")}
+          >
+            Studio
+          </Button>
+          <Button
+            className="cursor-pointer sm:hidden"
+            size="icon"
+            variant="ghost"
+            title="Studio"
+          >
+            🛠️ {/* or a proper icon like <ToolIcon /> */}
+          </Button>
           {/* Theme Toggle - keep as icon */}
           <Button
             variant="outline"

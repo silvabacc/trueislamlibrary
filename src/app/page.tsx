@@ -112,8 +112,11 @@ export default function Home() {
             return (
               <div key={`${post.id}-${index}`}>
                 <Card
-                  className="w-full max-h-[372px] cursor-pointer transition-transform duration-200 hover:-translate-y-1"
-                  onClick={() => router.push(`/post/${post["slug"].current}`)}
+                  className="max-h-[372px] cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push(`/post/${post["slug"].current}`);
+                  }}
                 >
                   <CardHeader>
                     <div className="flex space-x-2">
@@ -126,8 +129,15 @@ export default function Home() {
                     </div>
                   </CardHeader>
                   <CardContent className="relative overflow-hidden">
-                    <div className="rounded border p-4">
-                      <MarkDown remarkPlugins={[remarkGfm]}>
+                    <div className="rounded border p-4 wrap-break-word">
+                      <MarkDown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          a: ({ children }) => (
+                            <a className="hidden">{children}</a>
+                          ),
+                        }}
+                      >
                         {post["markdown"]}
                       </MarkDown>
                     </div>

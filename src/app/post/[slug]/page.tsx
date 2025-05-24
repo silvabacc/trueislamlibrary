@@ -32,7 +32,7 @@ export default function PostPage({
   console.log(post?.["markdown"]);
 
   return (
-    <div className="flex flex-col  items-center h-full">
+    <div className="flex flex-col items-center h-full">
       <div className="w-full max-w-7xl space-y-4">
         {isLoading && <SkeletonCard />}
         <Card>
@@ -42,7 +42,7 @@ export default function PostPage({
             </h2>
           </CardHeader>
           <CardContent>
-            <div style={{ backgroundColor: "var(--card)" }} className="p-4 ">
+            <div style={{ backgroundColor: "var(--card)" }} className="px-4 ">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkBreaks]}
                 rehypePlugins={[rehypeRaw]}
