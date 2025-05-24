@@ -24,6 +24,15 @@ const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => <p className="my-4">{children}</p>,
   },
+  list: {
+    bullet: ({ children }) => (
+      <ul className="list-disc list-outside pl-8">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="list-decimal list-outside pl-8">{children}</ol>
+    ),
+  },
+  listItem: ({ children }) => <li className="relative py-1">{children} </li>,
   marks: {
     link: ({ children, value }) => {
       const rel = !value.href.startsWith("/")
@@ -74,22 +83,6 @@ export default function PostPage({
           <CardContent>
             <div style={{ backgroundColor: "var(--card)" }} className="px-4 ">
               <PortableText value={post?.["body"]} components={components} />
-              {/* <ReactMarkdown
-                remarkPlugins={[remarkGfm, remarkBreaks]}
-                rehypePlugins={[rehypeRaw]}
-                components={{
-                  ul: ({ children }) => (
-                    <ul className="list-disc ml-12">{children}</ul>
-                  ),
-                  ol: ({ children }) => (
-                    <ol className="list-decimal ml-6">{children}</ol>
-                  ),
-                  li: ({ children }) => <li className="mb-1">{children}</li>,
-                  p: ({ children }) => <p className="py-2">{children}</p>,
-                }}
-              >
-                {post?.["markdown"] || ""}
-              </ReactMarkdown> */}
             </div>
           </CardContent>
         </Card>
