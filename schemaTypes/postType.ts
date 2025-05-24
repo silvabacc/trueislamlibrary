@@ -1,4 +1,27 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, defineArrayMember } from "sanity";
+
+import { PlayIcon } from "@sanity/icons";
+import { YouTubePreview } from "./youTubePreview";
+
+export const youtube = defineType({
+  name: "youtube",
+  type: "object",
+  title: "YouTube Embed",
+  icon: PlayIcon,
+  fields: [
+    defineField({
+      name: "url",
+      type: "url",
+      title: "YouTube video URL",
+    }),
+  ],
+  preview: {
+    select: { title: "url" },
+  },
+  components: {
+    preview: YouTubePreview,
+  },
+});
 
 export const postType = defineType({
   name: "post",
@@ -16,25 +39,25 @@ export const postType = defineType({
       ],
       options: {
         list: [
-          { title: "Islam", value: "islam" },
-          { title: "Proofs", value: "proofs" },
-          { title: "Quran", value: "quran" },
-          { title: "New to Islam", value: "new to islam" },
-          { title: "Marriage", value: "marriage" },
+          { title: "8thmane", value: "8thmane" },
           { title: "Adab", value: "adab" },
+          { title: "Aisha RA", value: "aishara" },
+          { title: "Aqeeda", value: "aqeeda" },
+          { title: "Atheism", value: "atheism" },
+          { title: "Christianity", value: "christianity" },
+          { title: "Debate", value: "debate" },
+          { title: "Defense", value: "defense" },
+          { title: "Islam", value: "islam" },
+          { title: "Islambackup", value: "islambackup" },
+          { title: "Library", value: "library" },
+          { title: "Marriage", value: "marriage" },
+          { title: "New to Islam", value: "new to islam" },
+          { title: "Proofs", value: "proofs" },
+          { title: "Prophet Muhammad ﷺ", value: "rasulallah" },
+          { title: "Quran", value: "quran" },
+          { title: "Salafi", value: "salafi" },
           { title: "Slavery", value: "slavery" },
           { title: "Tawassul", value: "tawassul" },
-          { title: "Aqeeda", value: "aqeeda" },
-          { title: "Islambackup", value: "islambackup" },
-          { title: "Defense", value: "defense" },
-          { title: "Aisha RA", value: "aishara" },
-          { title: "Prophet Muhammad ﷺ", value: "rasulallah" },
-          { title: "Christianity", value: "christianity" },
-          { title: "Atheism", value: "atheism" },
-          { title: "8thmane", value: "8thmane" },
-          { title: "Library", value: "library" },
-          { title: "Debate", value: "debate" },
-          { title: "Salafi", value: "salafi" },
           { title: "Tazkia", value: "tazkia" },
         ],
       },
@@ -61,8 +84,27 @@ export const postType = defineType({
       type: "image",
     }),
     defineField({
-      name: "markdown",
-      type: "markdown",
+      name: "body",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "block",
+        }),
+        defineArrayMember({
+          type: "youtube",
+        }),
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              type: "string",
+              title: "Alternative text",
+            },
+          ],
+        },
+      ],
     }),
   ],
 });

@@ -9,6 +9,26 @@ import ReactMarkdown from "react-markdown";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import SkeletonCard from "./card.skeleton";
 import rehypeRaw from "rehype-raw";
+import ReactPlayer from "react-player";
+import { PortableText } from "@portabletext/react";
+
+const components = {
+  types: {
+    youtube: ({ value }) => {
+      const { url } = value;
+      return (
+        <div className="flex justify-center">
+          <div className="rounded bg-(--background) p-4">
+            <ReactPlayer url={url} />
+          </div>
+        </div>
+      );
+    },
+  },
+  block: {
+    normal: ({ children }) => <p className="my-4">{children}</p>,
+  },
+};
 
 export default function PostPage({
   params,
@@ -33,7 +53,7 @@ export default function PostPage({
 
   return (
     <div className="flex flex-col items-center h-full">
-      <div className="w-full max-w-7xl space-y-4">
+      <div className="w-full max-w-3xl space-y-4">
         {isLoading && <SkeletonCard />}
         <Card>
           <CardHeader>
@@ -43,7 +63,8 @@ export default function PostPage({
           </CardHeader>
           <CardContent>
             <div style={{ backgroundColor: "var(--card)" }} className="px-4 ">
-              <ReactMarkdown
+              <PortableText value={post?.["body"]} components={components} />
+              {/* <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkBreaks]}
                 rehypePlugins={[rehypeRaw]}
                 components={{
@@ -58,7 +79,7 @@ export default function PostPage({
                 }}
               >
                 {post?.["markdown"] || ""}
-              </ReactMarkdown>
+              </ReactMarkdown> */}
             </div>
           </CardContent>
         </Card>

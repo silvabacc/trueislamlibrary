@@ -8,7 +8,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { SanityDocument } from "next-sanity";
+import { PortableText, SanityDocument } from "next-sanity";
 import { useEffect, useState } from "react";
 import { getPosts } from "./actions";
 import { formatElapsedDate, haveIntersection } from "@/lib/utils";
@@ -109,6 +109,7 @@ export default function Home() {
         {posts.length !== 0 && filteredPosts.length === 0 && <NoData />}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full px-4">
           {filteredPosts.map((post, index) => {
+            console.log(post["body"]);
             return (
               <div key={`${post.id}-${index}`}>
                 <Card
@@ -130,16 +131,7 @@ export default function Home() {
                   </CardHeader>
                   <CardContent className="relative overflow-hidden">
                     <div className="rounded border p-4 wrap-break-word">
-                      <MarkDown
-                        remarkPlugins={[remarkGfm]}
-                        components={{
-                          a: ({ children }) => (
-                            <a className="hidden">{children}</a>
-                          ),
-                        }}
-                      >
-                        {post["markdown"]}
-                      </MarkDown>
+                      <PortableText value={post["body"]} />
                     </div>
                   </CardContent>
                   <CardFooter>

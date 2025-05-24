@@ -1,3 +1,3 @@
-import {postType} from './postType'
+import { postType, youtube } from "./postType";
 
-export const schemaTypes = [postType]
+export const schemaTypes = [postType, youtube];
