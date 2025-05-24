@@ -6,8 +6,8 @@ export const components: PortableTextComponents = {
     youtube: ({ value }) => {
       const { url } = value;
       return (
-        <div className="flex justify-center">
-          <div className="w-full max-w-2xl aspect-video rounded bg-background p-2">
+        <div className="flex justify-center my-6">
+          <div className="w-full max-w-2xl aspect-video rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 shadow-sm">
             <ReactPlayer url={url} width="100%" height="100%" controls />
           </div>
         </div>
@@ -17,8 +17,8 @@ export const components: PortableTextComponents = {
       const { url } = value;
       const match = url.match(/\/video\/(\d+)/);
       return (
-        <div className="flex justify-center">
-          <div className="w-full max-w-2xl rounded bg-background p-2">
+        <div className="flex justify-center my-6">
+          <div className="w-full max-w-2xl rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 shadow-sm">
             <blockquote
               className="tiktok-embed w-full h-full"
               data-video-id={match?.[1]}
@@ -34,31 +34,39 @@ export const components: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+      <h1 className="mt-8 mb-4 text-3xl font-bold border-b border-gray-300 dark:border-gray-600 pb-2">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+      <h2 className="mt-6 mb-3 text-2xl font-semibold border-b border-gray-200 dark:border-gray-700 pb-1">
         {children}
       </h2>
     ),
-    normal: ({ children }) => <p className="my-4">{children}</p>,
+    normal: ({ children }) => (
+      <p className="my-4 text-[15px] leading-relaxed text-gray-800 dark:text-gray-200">
+        {children}
+      </p>
+    ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-gray-500 pl-4 italic my-4">
+      <blockquote className="my-4 border-l-4 border-gray-400 dark:border-gray-600 pl-4 text-gray-600 dark:text-gray-300 italic bg-gray-50 dark:bg-gray-800 rounded">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc list-outside pl-8">{children}</ul>
+      <ul className="list-disc pl-6 my-4 text-[15px] text-gray-800 dark:text-gray-200">
+        {children}
+      </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-outside pl-8">{children}</ol>
+      <ol className="list-decimal pl-6 my-4 text-[15px] text-gray-800 dark:text-gray-200">
+        {children}
+      </ol>
     ),
   },
-  listItem: ({ children }) => <li className="relative py-1">{children} </li>,
+  listItem: ({ children }) => <li className="mb-1 leading-snug">{children}</li>,
   marks: {
     link: ({ children, value }) => {
       const rel = !value.href.startsWith("/")
@@ -66,7 +74,7 @@ export const components: PortableTextComponents = {
         : undefined;
       return (
         <a
-          className="text-blue-600 hover:text-blue-800 break-all"
+          className="text-blue-600 dark:text-blue-400 hover:underline"
           href={value.href}
           target="_blank"
           rel={rel}
