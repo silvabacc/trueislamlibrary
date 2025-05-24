@@ -28,8 +28,8 @@ const components: PortableTextComponents = {
           <div className="rounded bg-(--background) p-4 w-full">
             <blockquote
               className="tiktok-embed"
-              data-video-id={match[1]}
-              style={{ maxHeight: "605px", minWidth: "325px;" }}
+              data-video-id={match?.[1]}
+              style={{ maxHeight: "605px", minWidth: "325px" }}
             >
               <section></section>{" "}
             </blockquote>{" "}
