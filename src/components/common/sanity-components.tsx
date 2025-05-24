@@ -18,7 +18,7 @@ export const components: PortableTextComponents = {
       const match = url.match(/\/video\/(\d+)/);
       return (
         <div className="flex justify-center">
-          <div className="w-full max-w-2xl aspect-[9/16] rounded bg-background p-2">
+          <div className="w-full max-w-2xl rounded bg-background p-2">
             <blockquote
               className="tiktok-embed w-full h-full"
               data-video-id={match?.[1]}
