@@ -45,7 +45,7 @@ export const components: PortableTextComponents = {
     ),
     normal: ({ children }) => <p className="my-4">{children}</p>,
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-gray-500 pl-4 italic text-gray-100 my-4">
+      <blockquote className="border-l-4 border-gray-500 pl-4 italic my-4">
         {children}
       </blockquote>
     ),
