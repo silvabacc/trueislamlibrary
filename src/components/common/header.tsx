@@ -13,7 +13,7 @@ export default function Header() {
         True Islam Library
       </h1>
       <span className="hidden md:inline self-end text-xs italic">
-        Made by Islambackup with love
+        Made by IslamBackup with love
       </span>
     </Link>
   );
