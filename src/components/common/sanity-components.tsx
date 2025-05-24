@@ -49,7 +49,7 @@ export const components: PortableTextComponents = {
       </p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-4 border-l-4 border-gray-400 dark:border-gray-600 pl-4 text-gray-600 dark:text-gray-300 italic bg-gray-50 dark:bg-gray-800 rounded">
+      <blockquote className="my-4 py-2 border-l-4 border-gray-400 dark:border-gray-600 pl-4 text-gray-600 dark:text-gray-300 italic bg-gray-50 dark:bg-gray-800 rounded">
         {children}
       </blockquote>
     ),
