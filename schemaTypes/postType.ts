@@ -2,6 +2,29 @@ import { defineField, defineType, defineArrayMember } from "sanity";
 
 import { PlayIcon } from "@sanity/icons";
 import { YouTubePreview } from "./youTubePreview";
+import { tiktokPreview } from "./tiktokPreview";
+
+export const tiktok = defineType({
+  name: "tiktok",
+  type: "object",
+  title: "TikTok Embed",
+  icon: PlayIcon,
+  fields: [
+    defineField({
+      name: "url",
+      type: "url",
+      title: "TikTok Video URL",
+      validation: (Rule) =>
+        Rule.uri({ scheme: ["https"], allowRelative: false }).required(),
+    }),
+  ],
+  preview: {
+    select: { title: "url" },
+  },
+  components: {
+    preview: tiktokPreview,
+  },
+});
 
 export const youtube = defineType({
   name: "youtube",
@@ -93,6 +116,7 @@ export const postType = defineType({
         defineArrayMember({
           type: "youtube",
         }),
+        defineArrayMember({ type: "tiktok" }),
         {
           type: "image",
           options: { hotspot: true },
@@ -104,6 +128,18 @@ export const postType = defineType({
             },
           ],
         },
+        defineArrayMember({
+          type: "object",
+          name: "authorBlock",
+          title: "Author",
+          fields: [
+            {
+              name: "name",
+              type: "string",
+              title: "Author Name",
+            },
+          ],
+        }),
       ],
     }),
   ],

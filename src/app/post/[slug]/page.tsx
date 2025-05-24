@@ -20,9 +20,32 @@ const components: PortableTextComponents = {
         </div>
       );
     },
+    tiktok: ({ value }) => {
+      const { url } = value;
+      const match = url.match(/\/video\/(\d+)/);
+      return (
+        <div className="flex justify-center">
+          <div className="rounded bg-(--background) p-4 w-full">
+            <blockquote
+              className="tiktok-embed"
+              data-video-id={match[1]}
+              style={{ maxHeight: "605px", minWidth: "325px;" }}
+            >
+              <section></section>{" "}
+            </blockquote>{" "}
+            <script async src="https://www.tiktok.com/embed.js"></script>
+          </div>
+        </div>
+      );
+    },
   },
   block: {
     normal: ({ children }) => <p className="my-4">{children}</p>,
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-gray-500 pl-4 italic text-gray-100 my-4">
+        {children}
+      </blockquote>
+    ),
   },
   list: {
     bullet: ({ children }) => (
@@ -42,6 +65,7 @@ const components: PortableTextComponents = {
         <a
           className="text-blue-600 hover:text-blue-800"
           href={value.href}
+          target="_blank"
           rel={rel}
         >
           {children}
