@@ -44,6 +44,16 @@ export const components: PortableTextComponents = {
         {children}
       </h2>
     ),
+    h3: ({ children }) => (
+      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+        {children}
+      </h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+        {children}
+      </h4>
+    ),
     normal: ({ children }) => (
       <p className="my-4 text-[15px] leading-relaxed text-gray-800 dark:text-gray-200">
         {children}
