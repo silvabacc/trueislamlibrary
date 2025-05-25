@@ -98,17 +98,13 @@ export default function Home() {
             </Badge>
           ))}
         </div>
-        {loading && (
-          <div className="flex space-x-4">
-            {Array(5)
-              .fill(0)
-              .map((a, index) => (
-                <SkeletonCard key={`skeleton-${index}`} />
-              ))}
-          </div>
-        )}
+
         {posts.length !== 0 && filteredPosts.length === 0 && <NoData />}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full px-4">
+          {loading &&
+            Array(9)
+              .fill(0)
+              .map((a, index) => <SkeletonCard key={`skeleton-${index}`} />)}
           {filteredPosts.map((post, index) => {
             return (
               <div key={`${post.id}-${index}`}>
