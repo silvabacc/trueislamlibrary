@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 import NoData from "@/components/common/no-data";
 import { components } from "@/components/common/sanity-components";
 
-const { block, list, marks, ...rest } = components;
+const { block, list } = components;
 
 const badges = [
   { title: "🕋 Islam", value: "islam" },
@@ -136,7 +136,6 @@ export default function Home() {
                         components={{
                           block,
                           list,
-                          marks,
                         }}
                       />
                     </div>

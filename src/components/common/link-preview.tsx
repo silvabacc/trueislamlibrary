@@ -39,8 +39,10 @@ export default function UrlPreview({ url }: UrlPreviewProps) {
         />
       )}
       <h3 className="text-lg font-semibold">{data?.title}</h3>
-      <p className="text-sm text-gray-600">{data?.description}</p>
-      <p className="text-xs text-blue-500 mt-2">{url}</p>
+      <p className="">{data?.description}</p>
+      <p className="text-xs text-blue-500 mt-2 text-xs text-blue-500 mt-2 break-words overflow-hidden">
+        {url}
+      </p>
     </a>
   );
 }
