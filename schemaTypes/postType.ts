@@ -136,7 +136,33 @@ export const postType = defineType({
             },
           ],
         }),
+        defineArrayMember({ type: "fileAttachment" }),
       ],
     }),
   ],
+});
+
+export const fileAttachment = defineType({
+  name: "fileAttachment",
+  type: "object",
+  title: "File Attachment",
+  fields: [
+    {
+      name: "file",
+      type: "file",
+      title: "File",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "description",
+      type: "string",
+      title: "Description",
+    },
+  ],
+  preview: {
+    select: {
+      title: "description",
+      media: "file",
+    },
+  },
 });

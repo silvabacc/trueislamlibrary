@@ -28,7 +28,7 @@ export default function UrlPreview({ url }: UrlPreviewProps) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block border rounded-xl p-4 shadow hover:shadow-md transition"
+      className="block border rounded-xl mt-4 p-4 shadow hover:shadow-md transition"
     >
       {loading && <Skeleton className="w-full h-48" />}
       {data?.images && data.images[0] && (
