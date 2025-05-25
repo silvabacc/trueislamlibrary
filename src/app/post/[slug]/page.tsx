@@ -37,8 +37,8 @@ export default function PostPage({
               {post?.["title"]}
             </h2>
           </CardHeader>
-          <CardContent>
-            <div style={{ backgroundColor: "var(--card)" }} className="px-4 ">
+          <CardContent className="px-1 lg:px-6">
+            <div className="px-4 bg-(--card)">
               <PortableText value={post?.["body"]} components={components} />
             </div>
           </CardContent>

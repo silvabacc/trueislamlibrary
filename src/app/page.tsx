@@ -77,7 +77,7 @@ export default function Home() {
   );
 
   return (
-    <div className="flex flex-col items-center min-h-screen">
+    <div className="flex flex-col items-center min<-h-screen">
       <div className="w-full max-w-7xl mx-auto px-4 space-y-4">
         <Input
           type="search"

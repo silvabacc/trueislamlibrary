@@ -18,16 +18,16 @@ export const components: PortableTextComponents = {
       const { url } = value;
       const match = url.match(/\/video\/(\d+)/);
       return (
-        <div className="flex justify-center my-6">
-          <div className="w-full max-w-2xl rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-2 shadow-sm">
-            <blockquote
-              className="tiktok-embed w-full h-full"
-              data-video-id={match?.[1]}
-              style={{ width: "100%", height: "100%" }}
-            >
-              <section></section>
-            </blockquote>
-            <script async src="https://www.tiktok.com/embed.js"></script>
+        <div className="flex justify-center my-6 rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+          <script async src="https://www.tiktok.com/embed.js"></script>
+          <div className="relative w-full max-w-[360px] aspect-[9/16]  p-2 shadow-sm overflow-hidden">
+            <iframe
+              scrolling="no"
+              title="Tiktok"
+              src={`https://www.tiktok.com/embed/${match?.[1]}`}
+              className="absolute top-0 left-0 w-full h-full "
+              allow="encrypted-media;"
+            ></iframe>
           </div>
         </div>
       );
