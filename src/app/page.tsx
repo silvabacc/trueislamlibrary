@@ -17,6 +17,8 @@ import { useRouter } from "next/navigation";
 import NoData from "@/components/common/no-data";
 import { components } from "@/components/common/sanity-components";
 
+const { block, list, marks, ...rest } = components;
+
 const badges = [
   { title: "🕋 Islam", value: "islam" },
   { title: "✅ Proofs", value: "proofs" },
@@ -131,7 +133,11 @@ export default function Home() {
                     <div className="rounded border p-4 wrap-break-word h-[160px]">
                       <PortableText
                         value={post["body"]}
-                        components={components}
+                        components={{
+                          block,
+                          list,
+                          marks,
+                        }}
                       />
                     </div>
                   </CardContent>

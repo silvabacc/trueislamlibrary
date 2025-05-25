@@ -1,5 +1,6 @@
 import { PortableTextComponents } from "next-sanity";
 import ReactPlayer from "react-player";
+import UrlPreview from "./link-preview";
 
 export const components: PortableTextComponents = {
   types: {
@@ -68,20 +69,6 @@ export const components: PortableTextComponents = {
   },
   listItem: ({ children }) => <li className="mb-1 leading-snug">{children}</li>,
   marks: {
-    link: ({ children, value }) => {
-      const rel = !value.href?.startsWith("/")
-        ? "noreferrer noopener"
-        : undefined;
-      return (
-        <a
-          className="text-blue-600 dark:text-blue-400 hover:underline"
-          href={value.href}
-          target="_blank"
-          rel={rel}
-        >
-          {children}
-        </a>
-      );
-    },
+    link: ({ value }) => <UrlPreview url={value.href} />,
   },
 };
