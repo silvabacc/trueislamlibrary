@@ -4,7 +4,7 @@ const tiktokLink = process.env.NEXT_TIKTOK_LINK;
 
 export default function Footer() {
   return (
-    <footer className="flex items-end justify-end mt-2 shadow rounded-lg mb-4">
+    <footer className="flex items justify-end mt-2 shadow rounded-lg mb-4">
       <ul className="flex items-center flex-wrap mb-6 md:mb-0">
         <li>
           <a
