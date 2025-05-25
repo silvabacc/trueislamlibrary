@@ -69,7 +69,7 @@ export const components: PortableTextComponents = {
   listItem: ({ children }) => <li className="mb-1 leading-snug">{children}</li>,
   marks: {
     link: ({ children, value }) => {
-      const rel = !value.href.startsWith("/")
+      const rel = !value.href?.startsWith("/")
         ? "noreferrer noopener"
         : undefined;
       return (
