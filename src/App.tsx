@@ -4,7 +4,8 @@ import "@mantine/nprogress/styles.css";
 
 import { createTheme, MantineProvider } from "@mantine/core";
 import { NavigationProgress } from "@mantine/nprogress";
-import { HeaderSearch } from "./HeaderSearch";
+import { RouterProvider } from "react-router";
+import { router } from "./router";
 
 function App() {
   const theme = createTheme({
@@ -27,8 +28,7 @@ function App() {
 
   return (
     <MantineProvider theme={theme}>
-      <NavigationProgress />
-      <HeaderSearch />
+      <RouterProvider router={router} />
     </MantineProvider>
   );
 }

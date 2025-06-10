@@ -3,26 +3,16 @@ import { Autocomplete, Burger, Flex, Group, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderSearch.module.css";
 import TrueIslamLibraryIcon from "./assets/trueislam.webp";
-
-const links = [
-  { link: "/about", label: "Features" },
-  { link: "/pricing", label: "Pricing" },
-  { link: "/learn", label: "Learn" },
-  { link: "/community", label: "Community" },
-];
+import { routes } from "./router";
+import { NavLink } from "react-router";
 
 export function HeaderSearch() {
   const [opened, { toggle }] = useDisclosure(false);
 
-  const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={classes.link}
-      onClick={(event) => event.preventDefault()}
-    >
-      {link.label}
-    </a>
+  const items = routes.map((route) => (
+    <NavLink key={route.title} to={route.path} className={classes.link}>
+      {route.title}
+    </NavLink>
   ));
 
   return (
@@ -49,9 +39,9 @@ export function HeaderSearch() {
               />
             </Menu.Target>
             <Menu.Dropdown className={classes.burger}>
-              {links.map((link, index) => (
-                <div key={`${link.label}-${index}`}>
-                  <Menu.Item onClick={toggle}>{link.label}</Menu.Item>
+              {routes.map((route, index) => (
+                <div key={`${route.title}-${index}`}>
+                  <Menu.Item onClick={toggle}>{route.title}</Menu.Item>
                 </div>
               ))}
             </Menu.Dropdown>
