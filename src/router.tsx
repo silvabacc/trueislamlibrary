@@ -2,6 +2,7 @@ import { NavigationProgress, nprogress } from "@mantine/nprogress";
 import { useEffect, type ReactNode } from "react";
 import { createBrowserRouter, useNavigation } from "react-router";
 import { HeaderSearch } from "./HeaderSearch";
+import Home from "./pages/Home";
 
 type ElementProps = {
   children?: ReactNode;
@@ -30,7 +31,7 @@ export const routes = [
   {
     path: "/",
     title: "Home",
-    element: <Element children={<div>Home</div>} />,
+    element: <Element children={<Home />} />,
   },
   {
     path: "/library",
