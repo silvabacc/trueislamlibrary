@@ -1,29 +1,29 @@
 import { Card, Flex, Group, Image, Pill, Popover, Text } from "@mantine/core";
 import classes from "./Card.module.css";
 import { useEffect, useRef, useState } from "react";
+import { urlFor } from "../client";
+import type { ImageDataType } from "../types";
+import { badges } from "../utils";
 
 type CardProps = {
   title: string;
-  description: string;
+  imageUrl?: ImageDataType;
+  tags?: string[];
 };
-export function ArticleCard({ title, description }: CardProps) {
+export function ArticleCard({ title, imageUrl, tags }: CardProps) {
   return (
     <Card withBorder padding="lg" radius="md" className={classes.card}>
       <Card.Section mb="sm">
         <Image
-          src="https://images.unsplash.com/photo-1477554193778-9562c28588c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
+          {...(imageUrl !== undefined && { src: urlFor(imageUrl).url() })}
           alt="Top 50 underrated plants for house decoration"
           height={180}
         />
       </Card.Section>
-
-      <Text className={classes.title}>
-        Top 50 underrated plants for house decoration
-      </Text>
-
+      <Text className={classes.title}>{title}</Text>
       <Card.Section className={classes.footer}>
         <Group gap={4}>
-          <CardPills pills={[]} />
+          <CardPills pills={badges.filter((b) => tags?.includes(b.value))} />
         </Group>
       </Card.Section>
     </Card>
@@ -39,7 +39,7 @@ export function CardPills({ pills }: CardPillsProps) {
   const moreRef = useRef<HTMLDivElement | null>(null);
   const [visibleCount, setVisibleCount] = useState(pills.length);
   const [popoverOpened, setPopoverOpened] = useState(false);
-  const MAX_WIDTH = 200;
+  const MAX_WIDTH = 220;
 
   useEffect(() => {
     let total = 0;

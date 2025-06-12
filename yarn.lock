@@ -2169,7 +2169,7 @@
 
 "@sanity/client@^7.5.0":
   version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-7.5.0.tgz#a88ee254c4915f553377b239df3c02563994c0f9"
+  resolved "https://registry.npmjs.org/@sanity/client/-/client-7.5.0.tgz#a88ee254c4915f553377b239df3c02563994c0f9"
   integrity sha512-Hy5jru/ePBlwTjc6dDxq8kqwiDbHb1l01WOQxRDITyqF8/ksa5fDcfmwjfhIBcFKkC222POd5UZ2vBsS4PSu/w==
   dependencies:
     "@sanity/eventsource" "^5.0.2"
@@ -2282,6 +2282,11 @@
 "@sanity/image-url@^1.0.2":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@sanity/image-url/-/image-url-1.1.0.tgz#f26905ef5bdd27165b0f04d8571eb75dc7cdf50a"
+  integrity sha512-JHumVRxzzaZAJyOimntdukA9TjjzsJiaiq/uUBdTknMLCNvtM6KQ5OCp6W5fIdY78uyFxtQjz+MPXwK8WBIxWg==
+
+"@sanity/image-url@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@sanity/image-url/-/image-url-1.1.0.tgz#f26905ef5bdd27165b0f04d8571eb75dc7cdf50a"
   integrity sha512-JHumVRxzzaZAJyOimntdukA9TjjzsJiaiq/uUBdTknMLCNvtM6KQ5OCp6W5fIdY78uyFxtQjz+MPXwK8WBIxWg==
 
 "@sanity/import@^3.38.2":
@@ -2622,6 +2627,18 @@
   version "3.34.0"
   resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-3.34.0.tgz#b11734dc76686abe969b68c2f33e565b116b70fb"
   integrity sha512-jtVqv0JC1WU2TTEBN32D9+R6mc1iEBuPwLnBsWaR02SIEciu9aq5806AWkCHuObhQ4ERhhXErLEK7Fs+tEZxiA==
+
+"@tanstack/query-core@5.80.7":
+  version "5.80.7"
+  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.80.7.tgz#e029b26cad02fc5fe64116ac245aad0c3e5f83b4"
+  integrity sha512-s09l5zeUKC8q7DCCCIkVSns8zZrK4ZDT6ryEjxNBFi68G4z2EBobBS7rdOY3r6W1WbUDpc1fe5oY+YO/+2UVUg==
+
+"@tanstack/react-query@^5.80.7":
+  version "5.80.7"
+  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.80.7.tgz#664f62f42d9ae892c07543fc64f53898aad57afa"
+  integrity sha512-u2F0VK6+anItoEvB3+rfvTO9GEh2vb00Je05OwlUe/A0lkJBgW1HckiY3f9YZa+jx6IOe4dHPh10dyp9aY3iRQ==
+  dependencies:
+    "@tanstack/query-core" "5.80.7"
 
 "@tanstack/react-table@^8.16.0":
   version "8.21.3"

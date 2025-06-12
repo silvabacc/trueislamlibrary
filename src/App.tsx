@@ -5,8 +5,10 @@ import "@mantine/nprogress/styles.css";
 import { createTheme, MantineProvider } from "@mantine/core";
 import { RouterProvider } from "react-router";
 import { router } from "./router";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const primaryColor = "#005013";
+const queryClient = new QueryClient();
 
 function App() {
   const theme = createTheme({
@@ -29,7 +31,9 @@ function App() {
 
   return (
     <MantineProvider theme={theme}>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </MantineProvider>
   );
 }
