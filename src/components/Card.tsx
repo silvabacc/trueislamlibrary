@@ -1,12 +1,12 @@
 import { Card, Flex, Group, Image, Pill, Popover, Text } from "@mantine/core";
-import classes from "./CardGradient.module.css";
+import classes from "./Card.module.css";
 import { useEffect, useRef, useState } from "react";
 
 type CardProps = {
   title: string;
   description: string;
 };
-export function ArticleCardFooter({ title, description }: CardProps) {
+export function ArticleCard({ title, description }: CardProps) {
   return (
     <Card withBorder padding="lg" radius="md" className={classes.card}>
       <Card.Section mb="sm">
@@ -24,11 +24,6 @@ export function ArticleCardFooter({ title, description }: CardProps) {
       <Card.Section className={classes.footer}>
         <Group gap={4}>
           <CardPills pills={[]} />
-          {/* <Flex wrap={"nowrap"} gap={4}> */}
-          {/* {badges.map((badge) => (
-              <Pill size="xs">{badge.title}</Pill>
-            ))} */}
-          {/* </Flex> */}
         </Group>
       </Card.Section>
     </Card>

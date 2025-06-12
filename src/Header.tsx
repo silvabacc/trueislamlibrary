@@ -1,6 +1,6 @@
 import { Burger, Button, Flex, Group, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import classes from "./HeaderSearch.module.css";
+import classes from "./Header.module.css";
 import TrueIslamLibraryIcon from "./assets/trueislam.webp";
 import { routes } from "./router";
 import { NavLink } from "react-router";
