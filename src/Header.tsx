@@ -2,13 +2,13 @@ import { Burger, Button, Flex, Group, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
 import TrueIslamLibraryIcon from "./assets/trueislam.webp";
-import { routes } from "./router";
+import { headerRoutes, routes } from "./router";
 import { NavLink } from "react-router";
 
 export function HeaderSearch() {
   const [opened, { toggle }] = useDisclosure(false);
 
-  const items = routes.map((route) => (
+  const items = headerRoutes.map((route) => (
     <NavLink key={route.title} to={route.path} className={classes.link}>
       {route.title}
     </NavLink>
@@ -28,18 +28,13 @@ export function HeaderSearch() {
               />
             </Menu.Target>
             <Menu.Dropdown className={classes.burger}>
-              {routes.map((route, index) => (
+              {[...headerRoutes, ...routes].map((route, index) => (
                 <div key={`${route.title}-${index}`}>
-                  <Menu.Item onClick={toggle}>
-                    <NavLink to={route.path}>{route.title}</NavLink>
-                  </Menu.Item>
+                  <NavLink to={route.path}>
+                    <Menu.Item onClick={toggle}>{route.title}</Menu.Item>
+                  </NavLink>
                 </div>
               ))}
-              <div>
-                <Menu.Item onClick={toggle}>
-                  <NavLink to={"/studio"}>Studio</NavLink>
-                </Menu.Item>
-              </div>
             </Menu.Dropdown>
           </Menu>
           <Group>
@@ -53,11 +48,13 @@ export function HeaderSearch() {
             </Flex>
           </Group>
         </Group>
-        <Group>
-          <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
+        <Group visibleFrom="sm">
+          <Group ml={50} gap={5} className={classes.links}>
             {items}
           </Group>
-          <Button visibleFrom="xs">Studio</Button>
+          <NavLink to={"/studio"}>
+            <Button>Studio</Button>
+          </NavLink>
         </Group>
       </div>
     </header>

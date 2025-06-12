@@ -27,7 +27,7 @@ const Element = ({ children }: ElementProps) => {
   );
 };
 
-export const routes = [
+export const headerRoutes = [
   {
     path: "/",
     title: "Library",
@@ -40,4 +40,12 @@ export const routes = [
   },
 ];
 
-export const router = createBrowserRouter([...routes]);
+export const routes = [
+  {
+    path: "/studio",
+    title: "Studio",
+    element: <Element children={<div>Studio</div>} />,
+  },
+];
+
+export const router = createBrowserRouter([...headerRoutes, ...routes]);
