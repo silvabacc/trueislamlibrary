@@ -3,6 +3,7 @@ import { useEffect, type ReactNode } from "react";
 import { createBrowserRouter, useNavigation } from "react-router";
 import { HeaderSearch } from "./Header";
 import Library from "./pages/Library";
+import StudioRoute from "./pages/Studio";
 
 type ElementProps = {
   children?: ReactNode;
@@ -44,7 +45,7 @@ export const routes = [
   {
     path: "/studio",
     title: "Studio",
-    element: <Element children={<div>Studio</div>} />,
+    element: <Element children={<StudioRoute />} />,
   },
 ];
 
