@@ -6,6 +6,8 @@ import { createTheme, MantineProvider } from "@mantine/core";
 import { RouterProvider } from "react-router";
 import { router } from "./router";
 
+const primaryColor = "#005013";
+
 function App() {
   const theme = createTheme({
     primaryColor: "primary",
@@ -17,8 +19,8 @@ function App() {
         "#71fe8f",
         "#4dfd6e",
         "#3bfe59",
-        "#005013",
-        "#28e23f",
+        `${primaryColor}`,
+        "#00370d",
         "#1dc936",
         "#005013",
       ],

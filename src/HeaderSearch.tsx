@@ -1,5 +1,4 @@
-import { IconSearch } from "@tabler/icons-react";
-import { Autocomplete, Burger, Flex, Group, Menu } from "@mantine/core";
+import { Burger, Button, Flex, Group, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./HeaderSearch.module.css";
 import TrueIslamLibraryIcon from "./assets/trueislam.webp";
@@ -31,9 +30,16 @@ export function HeaderSearch() {
             <Menu.Dropdown className={classes.burger}>
               {routes.map((route, index) => (
                 <div key={`${route.title}-${index}`}>
-                  <Menu.Item onClick={toggle}>{route.title}</Menu.Item>
+                  <Menu.Item onClick={toggle}>
+                    <NavLink to={route.path}>{route.title}</NavLink>
+                  </Menu.Item>
                 </div>
               ))}
+              <div>
+                <Menu.Item onClick={toggle}>
+                  <NavLink to={"/studio"}>Studio</NavLink>
+                </Menu.Item>
+              </div>
             </Menu.Dropdown>
           </Menu>
           <Group>
@@ -51,20 +57,7 @@ export function HeaderSearch() {
           <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
             {items}
           </Group>
-          <Autocomplete
-            visibleFrom="xs"
-            placeholder="Search"
-            leftSection={<IconSearch size={16} stroke={1.5} />}
-            data={[
-              "React",
-              "Angular",
-              "Vue",
-              "Next.js",
-              "Riot.js",
-              "Svelte",
-              "Blitz.js",
-            ]}
-          />
+          <Button visibleFrom="xs">Studio</Button>
         </Group>
       </div>
     </header>
