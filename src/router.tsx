@@ -47,6 +47,11 @@ export const routes = [
     title: "Studio",
     element: <Element children={<StudioRoute />} />,
   },
+  {
+    path: "/studio/*",
+    title: "Studio",
+    element: <Element children={<StudioRoute />} />,
+  },
 ];
 
 export const router = createBrowserRouter([...headerRoutes, ...routes]);
