@@ -8,8 +8,9 @@ import {
   Pill,
   Text,
 } from "@mantine/core";
-import { CardGradient } from "../components/CardGradient";
+
 import { IconSearch } from "@tabler/icons-react";
+import { ArticleCardFooter } from "../components/CardGradient";
 
 const badges = [
   { title: "🕋 Islam", value: "islam" },
@@ -36,7 +37,7 @@ const badges = [
 
 export default function Home() {
   return (
-    <Container>
+    <Container my="lg">
       <Grid>
         <Grid.Col span={3}>
           <h1>Articles from our library</h1>
@@ -46,19 +47,19 @@ export default function Home() {
           </p>
         </Grid.Col>
         <Grid.Col span={3}>
-          <CardGradient
+          <ArticleCardFooter
             title="An example of an article title"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
           />
         </Grid.Col>
         <Grid.Col span={3}>
-          <CardGradient
+          <ArticleCardFooter
             title="An example of an article title"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
           />
         </Grid.Col>
         <Grid.Col span={3}>
-          <CardGradient
+          <ArticleCardFooter
             title="An example of an article title"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
           />
@@ -86,6 +87,38 @@ export default function Home() {
       <Text size="sm" mt="sm" c="dimmed">
         Trending
       </Text>
+      <Grid>
+        <Grid.Col span={3}>
+          <ArticleCardFooter
+            title="An example of an article title"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+          />
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <ArticleCardFooter
+            title="An example of an article title"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+          />
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <ArticleCardFooter
+            title="An example of an article title"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+          />
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <ArticleCardFooter
+            title="An example of an article title"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+          />
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <ArticleCardFooter
+            title="An example of an article title"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+          />
+        </Grid.Col>
+      </Grid>
     </Container>
   );
 }
