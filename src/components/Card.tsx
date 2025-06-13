@@ -1,8 +1,7 @@
-import { Card, Flex, Group, Image, Popover, Text } from "@mantine/core";
+import { Card, Flex, Group, Popover, Text } from "@mantine/core";
 import classes from "./Card.module.css";
 import { useEffect, useRef, useState } from "react";
-import { urlFor } from "../client";
-import type { ImageDataType, PortableTextDocument } from "../types";
+import type { PortableTextDocument } from "../types";
 import { badges } from "../utils";
 import Pill from "./Pill";
 import PortableText from "react-portable-text";
@@ -17,7 +16,15 @@ export function ArticleCard({ title, body, tags }: CardProps) {
     <Card withBorder padding="lg" radius="md" className={classes.card}>
       <Text className={classes.title}>{title}</Text>
       <Text fz="sm" c="dimmed" lineClamp={6}>
-        <PortableText content={body} />
+        <PortableText
+          content={body}
+          serializers={{
+            h1: ({ children }) => <h1 style={{ fontSize: 16 }}>{children}</h1>,
+            h2: ({ children }) => <h2 style={{ fontSize: 14 }}>{children}</h2>,
+            h3: ({ children }) => <h3 style={{ fontSize: 12 }}>{children}</h3>,
+            h4: ({ children }) => <h4 style={{ fontSize: 10 }}>{children}</h4>,
+          }}
+        />
       </Text>
       <Card.Section className={classes.footer}>
         <Group gap={4}>
@@ -66,7 +73,7 @@ export function CardPills({ pills }: CardPillsProps) {
   const hiddenCount = hiddenPills.length;
 
   return (
-    <Flex gap={2} style={{ width: MAX_WIDTH }}>
+    <Flex gap={2} w={MAX_WIDTH}>
       {pills.slice(0, visibleCount).map((pill, index) => (
         <div key={pill.title} ref={(el) => (pillRefs.current[index] = el)}>
           <Pill size="xs">{pill.title}</Pill>
@@ -87,7 +94,6 @@ export function CardPills({ pills }: CardPillsProps) {
               ref={moreRef}
               onMouseEnter={() => setPopoverOpened(true)}
               onMouseLeave={() => setPopoverOpened(false)}
-              style={{ cursor: "pointer" }}
             >
               <Pill size="xs">+{hiddenCount} more</Pill>
             </div>

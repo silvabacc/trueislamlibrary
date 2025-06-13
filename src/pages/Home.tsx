@@ -10,6 +10,7 @@ import {
   BackgroundImage,
   Stack,
 } from "@mantine/core";
+import classes from "./Home.module.css";
 
 import { IconSearch } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
@@ -47,15 +48,17 @@ export default function Library() {
         <BackgroundImage h={200} src={Azhar}>
           <Stack
             h={"100%"}
-            style={{ color: "white", textAlign: "center" }}
+            className={classes.image__text}
             justify="center"
             gap={0}
           >
-            <h1 style={{ margin: 0 }}>Articles from the True Islam Library</h1>
-            <p style={{ margin: 0 }}>
+            <h1 className={classes.header}>
+              Articles from the True Islam Library
+            </h1>
+            <Text className={classes.sub} fw={800}>
               Your source for authentic Islamic articles, insights, and
               understanding.
-            </p>
+            </Text>
           </Stack>
         </BackgroundImage>
       </div>
