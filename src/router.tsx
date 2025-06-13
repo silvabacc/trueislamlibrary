@@ -4,6 +4,7 @@ import { createBrowserRouter, useNavigation } from "react-router";
 import { HeaderSearch } from "./Header";
 import Home from "./pages/Home";
 import StudioRoute from "./pages/Studio";
+import Post from "./pages/Post";
 
 type ElementProps = {
   children?: ReactNode;
@@ -57,6 +58,13 @@ export const routes = [
     path: "/studio/*",
     title: "Studio",
     element: <Element children={<StudioRoute />} />,
+  },
+  {
+    path: "post",
+    children: [
+      { index: true, Component: () => <Element children={<Home />} /> },
+      { path: ":post", Component: () => <Element children={<Post />} /> },
+    ],
   },
 ];
 
