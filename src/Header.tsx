@@ -1,4 +1,12 @@
-import { Burger, Button, Flex, Group, Menu } from "@mantine/core";
+import {
+  Box,
+  Burger,
+  Button,
+  Container,
+  Flex,
+  Group,
+  Menu,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
 import TrueIslamLibraryIcon from "./assets/trueislam.webp";
@@ -17,7 +25,7 @@ export function HeaderSearch() {
   return (
     <header className={classes.header}>
       <div className={classes.inner}>
-        <Group>
+        <Box>
           <Menu opened={opened} shadow="md" width={200}>
             <Menu.Target>
               <Burger
@@ -43,19 +51,16 @@ export function HeaderSearch() {
               width={40}
               src={TrueIslamLibraryIcon}
             />
-            <Flex>
-              <h2>True Islam Library</h2>
-            </Flex>
           </Group>
-        </Group>
+        </Box>
         <Group visibleFrom="sm">
           <Group ml={50} gap={5} className={classes.links}>
             {items}
           </Group>
-          <NavLink to={"/studio"}>
-            <Button>Studio</Button>
-          </NavLink>
         </Group>
+        <NavLink to={"/studio"}>
+          <Button>Studio</Button>
+        </NavLink>
       </div>
     </header>
   );

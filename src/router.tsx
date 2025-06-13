@@ -2,7 +2,7 @@ import { NavigationProgress, nprogress } from "@mantine/nprogress";
 import { useEffect, type ReactNode } from "react";
 import { createBrowserRouter, useNavigation } from "react-router";
 import { HeaderSearch } from "./Header";
-import Library from "./pages/Library";
+import Home from "./pages/Home";
 import StudioRoute from "./pages/Studio";
 
 type ElementProps = {
@@ -31,8 +31,8 @@ const Element = ({ children }: ElementProps) => {
 export const headerRoutes = [
   {
     path: "/",
-    title: "Library",
-    element: <Element children={<Library />} />,
+    title: "Home",
+    element: <Element children={<Home />} />,
   },
   {
     path: "/videos",
