@@ -1,26 +1,24 @@
-import { Card, Flex, Group, Image, Pill, Popover, Text } from "@mantine/core";
+import { Card, Flex, Group, Image, Popover, Text } from "@mantine/core";
 import classes from "./Card.module.css";
 import { useEffect, useRef, useState } from "react";
 import { urlFor } from "../client";
-import type { ImageDataType } from "../types";
+import type { ImageDataType, PortableTextDocument } from "../types";
 import { badges } from "../utils";
+import Pill from "./Pill";
+import PortableText from "react-portable-text";
 
 type CardProps = {
   title: string;
-  imageUrl?: ImageDataType;
+  body: PortableTextDocument;
   tags?: string[];
 };
-export function ArticleCard({ title, imageUrl, tags }: CardProps) {
+export function ArticleCard({ title, body, tags }: CardProps) {
   return (
     <Card withBorder padding="lg" radius="md" className={classes.card}>
-      <Card.Section mb="sm">
-        <Image
-          {...(imageUrl !== undefined && { src: urlFor(imageUrl).url() })}
-          alt="Top 50 underrated plants for house decoration"
-          height={180}
-        />
-      </Card.Section>
       <Text className={classes.title}>{title}</Text>
+      <Text fz="sm" c="dimmed" lineClamp={6}>
+        <PortableText content={body} />
+      </Text>
       <Card.Section className={classes.footer}>
         <Group gap={4}>
           <CardPills pills={badges.filter((b) => tags?.includes(b.value))} />
