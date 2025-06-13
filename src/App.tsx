@@ -22,15 +22,15 @@ function App() {
         "#4dfd6e",
         "#3bfe59",
         `${primaryColor}`,
-        "#00370d",
-        "#1dc936",
-        "#005013",
+        "#034a14",
+        `${primaryColor}`,
+        "#034a14",
       ],
     },
   });
 
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} defaultColorScheme="dark">
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>

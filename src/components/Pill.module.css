@@ -1,0 +1,22 @@
+.pill {
+  border: 1px;
+  border-color: #35373a;
+  border-style: solid;
+  cursor: pointer;
+}
+
+.pill__filled {
+  background-color: var(--primary-color);
+  border: 1px;
+  border-color: #35373a;
+  border-style: solid;
+  cursor: pointer;
+}
+
+.pill:hover {
+  box-shadow: 2px 2px 6px var(--primary-color);
+}
+
+.pill__filled:hover {
+  box-shadow: 2px 2px 6px var(--primary-color);
+}

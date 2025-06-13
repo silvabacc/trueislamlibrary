@@ -5,7 +5,6 @@ import {
   Flex,
   Grid,
   Group,
-  Pill,
   Text,
 } from "@mantine/core";
 
@@ -15,6 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import { sanityClient } from "../client";
 import type { Post } from "../types";
 import { badges } from "../utils";
+import Pill from "../components/Pill";
 
 const fetchNewPosts = async () => {
   const query = `*[_type == "post"] | order(publishedAt desc)[0...3] {
@@ -62,9 +62,7 @@ export default function Library() {
       <Flex align={"center"}>
         <Group flex={4} my="sm">
           {badges.map((badge) => (
-            <Pill key={badge.value} size="xs">
-              {badge.title}
-            </Pill>
+            <Pill key={badge.value}>{badge.title}</Pill>
           ))}
         </Group>
         <Autocomplete
