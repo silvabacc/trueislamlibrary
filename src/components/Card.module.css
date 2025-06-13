@@ -1,6 +1,10 @@
 .card {
   background-color: var(--mantine-color-body);
   cursor: pointer;
+
+  @mixin hover {
+    transform: scale(1.01);
+  }
 }
 
 .title {

@@ -34,10 +34,16 @@ export const headerRoutes = [
     title: "Home",
     element: <Element children={<Home />} />,
   },
+
   {
     path: "/videos",
     title: "Videos",
     element: <Element children={<div>Videos</div>} />,
+  },
+  {
+    path: "/about",
+    title: "About",
+    element: <Element children={<div>About</div>} />,
   },
 ];
 
