@@ -55,17 +55,20 @@ export const routes = [
     element: <Element children={<StudioRoute />} />,
   },
   {
-    path: "/studio/*",
-    title: "Studio",
-    element: <Element children={<StudioRoute />} />,
-  },
-  {
     path: "post",
     children: [
       { index: true, Component: () => <Element children={<Home />} /> },
-      { path: ":post", Component: () => <Element children={<Post />} /> },
+      { path: ":slug", Component: () => <Element children={<Post />} /> },
     ],
   },
 ];
 
-export const router = createBrowserRouter([...headerRoutes, ...routes]);
+export const router = createBrowserRouter([
+  ...headerRoutes,
+  ...routes,
+  {
+    path: "/studio/*",
+    title: "Studio",
+    element: <Element children={<StudioRoute />} />,
+  },
+]);

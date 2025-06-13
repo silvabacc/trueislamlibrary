@@ -1,9 +1,7 @@
 import {
   Autocomplete,
   Container,
-  Divider,
   Grid,
-  Image,
   Group,
   Text,
   Flex,
@@ -19,6 +17,7 @@ import { badges } from "../utils";
 import Pill from "../components/Pill";
 import Azhar from "../assets/azhar.webp";
 import { ArticleCard } from "../components/Card";
+import { useNavigate } from "react-router";
 
 const fetchNewPosts = async () => {
   const query = `*[_type == "post"] | order(publishedAt desc)[0...3] {
@@ -35,10 +34,15 @@ const fetchNewPosts = async () => {
 };
 
 export default function Library() {
+  const navigate = useNavigate();
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["newPosts"],
     queryFn: fetchNewPosts,
   });
+
+  const onClickCard = (slug: string) => {
+    navigate(`/post/${slug}`);
+  };
 
   console.log(data);
 
@@ -90,6 +94,7 @@ export default function Library() {
                 title={post.title}
                 body={post.body}
                 tags={post.tags}
+                onClick={() => onClickCard(post.slug.current)}
               />
             </Grid.Col>
           ))}

@@ -17,11 +17,7 @@
 
 a {
   font-weight: 500;
-  color: var(--primary-color);
   text-decoration: inherit;
-}
-a:hover {
-  color: var(--primary-color);
 }
 
 body {

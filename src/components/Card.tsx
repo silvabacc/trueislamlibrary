@@ -10,10 +10,17 @@ type CardProps = {
   title: string;
   body: PortableTextDocument;
   tags?: string[];
+  onClick?: () => void;
 };
-export function ArticleCard({ title, body, tags }: CardProps) {
+export function ArticleCard({ title, body, tags, onClick }: CardProps) {
   return (
-    <Card withBorder padding="lg" radius="md" className={classes.card}>
+    <Card
+      withBorder
+      padding="lg"
+      radius="md"
+      className={classes.card}
+      onClick={onClick}
+    >
       <Text className={classes.title}>{title}</Text>
       <Text fz="sm" c="dimmed" lineClamp={6}>
         <PortableText
