@@ -5,6 +5,7 @@ import { HeaderSearch } from "./Header";
 import Home from "./pages/Home";
 import StudioRoute from "./pages/Studio";
 import Post from "./pages/Post";
+import { FooterSocial } from "./components/Footer";
 
 type ElementProps = {
   children?: ReactNode;
@@ -25,6 +26,9 @@ const Element = ({ children }: ElementProps) => {
       <HeaderSearch />
       <NavigationProgress />
       {children}
+      <footer>
+        <FooterSocial />
+      </footer>
     </>
   );
 };
