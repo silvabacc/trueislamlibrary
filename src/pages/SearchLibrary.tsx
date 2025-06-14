@@ -1,9 +1,11 @@
-import { Autocomplete, Container, Grid, Text } from "@mantine/core";
+import { Autocomplete, Container, Divider, Grid, Text } from "@mantine/core";
 import PageTransition from "../animations/PageTransition";
 import { useEffect, useState } from "react";
 import { IconSearch } from "@tabler/icons-react";
 import { sanityClient } from "../client";
 import type { Post } from "../types";
+import classes from "./SearchLibrary.module.css";
+import { useNavigate } from "react-router";
 
 const stopWords = new Set([
   "the",
@@ -40,6 +42,7 @@ function SearchLibrary() {
   const [matchedPosts, setMatchedPosts] = useState<
     { post: Post; paragraphs: string[] }[]
   >([]);
+  const navigate = useNavigate();
 
   // Debounce the search input
   useEffect(() => {
@@ -140,6 +143,10 @@ function SearchLibrary() {
     return highlighted;
   };
 
+  const onClick = (slug: string) => {
+    navigate(`/post/${slug}`);
+  };
+
   return (
     <Container>
       <h1>Search library</h1>
@@ -153,7 +160,12 @@ function SearchLibrary() {
       />
       <Grid py={24}>
         {matchedPosts.map(({ post, paragraphs }) => (
-          <Grid.Col span={12} key={post._id}>
+          <Grid.Col
+            span={12}
+            key={post._id}
+            className={classes.search__result}
+            onClick={() => onClick(post.slug.current)}
+          >
             <Text fw={800}>{post.title}</Text>
             {paragraphs.map((para, idx) => (
               <Text
