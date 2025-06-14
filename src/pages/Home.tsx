@@ -110,56 +110,14 @@ function Library() {
         </Group>
         <Grid>
           {filteredPosts?.map((post) => (
-            <>
-              <Grid.Col key={post._id} span={4}>
-                <ArticleCard
-                  title={post.title}
-                  body={post.body}
-                  tags={post.tags}
-                  onClick={() => onClickCard(post.slug.current)}
-                />
-              </Grid.Col>
-              <Grid.Col key={post._id} span={4}>
-                <ArticleCard
-                  title={post.title}
-                  body={post.body}
-                  tags={post.tags}
-                  onClick={() => onClickCard(post.slug.current)}
-                />
-              </Grid.Col>{" "}
-              <Grid.Col key={post._id} span={4}>
-                <ArticleCard
-                  title={post.title}
-                  body={post.body}
-                  tags={post.tags}
-                  onClick={() => onClickCard(post.slug.current)}
-                />
-              </Grid.Col>{" "}
-              <Grid.Col key={post._id} span={4}>
-                <ArticleCard
-                  title={post.title}
-                  body={post.body}
-                  tags={post.tags}
-                  onClick={() => onClickCard(post.slug.current)}
-                />
-              </Grid.Col>{" "}
-              <Grid.Col key={post._id} span={4}>
-                <ArticleCard
-                  title={post.title}
-                  body={post.body}
-                  tags={post.tags}
-                  onClick={() => onClickCard(post.slug.current)}
-                />
-              </Grid.Col>{" "}
-              <Grid.Col key={post._id} span={4}>
-                <ArticleCard
-                  title={post.title}
-                  body={post.body}
-                  tags={post.tags}
-                  onClick={() => onClickCard(post.slug.current)}
-                />
-              </Grid.Col>
-            </>
+            <Grid.Col key={post._id} span={4}>
+              <ArticleCard
+                title={post.title}
+                body={post.body}
+                tags={post.tags}
+                onClick={() => onClickCard(post.slug.current)}
+              />
+            </Grid.Col>
           ))}
         </Grid>
       </Container>
