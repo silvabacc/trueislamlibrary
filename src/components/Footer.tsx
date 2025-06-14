@@ -5,13 +5,9 @@ import {
 } from "@tabler/icons-react";
 import { ActionIcon, Container, Group, Text } from "@mantine/core";
 import classes from "./Footer.module.css";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 export function FooterSocial() {
-  const navigate = useNavigate();
-
-  console.log(import.meta.env.VITE_TIKTOK);
-
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>

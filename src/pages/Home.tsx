@@ -44,8 +44,6 @@ export default function Library() {
     navigate(`/post/${slug}`);
   };
 
-  console.log(data);
-
   return (
     <>
       <div>
