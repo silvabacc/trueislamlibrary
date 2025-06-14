@@ -25,10 +25,11 @@ export function HeaderSearch() {
   return (
     <header className={classes.header}>
       <div className={classes.inner}>
-        <Box>
+        <Flex align={"center"}>
           <Menu opened={opened} shadow="md" width={200}>
             <Menu.Target>
               <Burger
+                mr={8}
                 opened={opened}
                 onClick={toggle}
                 size="sm"
@@ -45,14 +46,8 @@ export function HeaderSearch() {
               ))}
             </Menu.Dropdown>
           </Menu>
-          <Group>
-            <img
-              className={classes.icon}
-              width={40}
-              src={TrueIslamLibraryIcon}
-            />
-          </Group>
-        </Box>
+          <img className={classes.icon} width={40} src={TrueIslamLibraryIcon} />
+        </Flex>
         <Group visibleFrom="sm">
           <Group ml={50} gap={5} className={classes.links}>
             {items}

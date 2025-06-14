@@ -55,7 +55,7 @@ export default function Post() {
           }}
         />
       </div>
-      <Group gap={12} className={classes.tags__wrapper}>
+      <Group gap={12} className={classes.tags__wrapper} pb={12}>
         <Stack w={320}>
           <Text size="sm" mt="sm" my="sm" c="dimmed">
             Tags
