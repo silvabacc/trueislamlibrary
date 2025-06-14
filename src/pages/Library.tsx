@@ -11,49 +11,74 @@ import {
 import classes from "./Library.module.css";
 
 import { IconSearch } from "@tabler/icons-react";
-import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
 import { sanityClient } from "../client";
 import { badges } from "../utils";
 import Pill from "../components/Pill";
 import Azhar from "../assets/azhar.webp";
 import { ArticleCard } from "../components/Card";
-import { useNavigate } from "react-router";
-import { useState } from "react";
 import type { Post } from "../types";
 import PageTransition from "../animations/PageTransition";
 
-const fetchNewPosts = async () => {
-  const query = `*[_type == "post"] | order(publishedAt desc)[0...3] {
-  _id,
-  title,
-  slug,
-  image,
-  body,
-  tags,
-  publishedAt
-}`;
-  const posts = await sanityClient.fetch(query);
-  return posts;
-};
-
 function Library() {
-  const navigate = useNavigate();
-  const { isPending, isError, data, error } = useQuery<Post[]>({
-    queryKey: ["newPosts"],
-    queryFn: fetchNewPosts,
-  });
-
+  const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [posts, setPosts] = useState<Post[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
+  const navigate = useNavigate();
 
-  const onClickCard = (slug: string) => {
-    navigate(`/post/${slug}`);
-  };
+  // Debounce search input by 1 second
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [search]);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const query = `*[_type == "post"] | order(publishedAt desc)[0...50] {
+        _id,
+        title,
+        slug,
+        image,
+        body,
+        tags,
+        publishedAt
+      }`;
+
+      try {
+        const result = await sanityClient.fetch(query);
+
+        const filteredBySearch = debouncedSearch.trim()
+          ? result.filter((post: Post) => {
+              const plainBody = post.body
+                ?.map((block: any) =>
+                  block.children?.map((child: any) => child.text).join(" ")
+                )
+                .join(" ");
+
+              const fullText = `${post.title} ${plainBody || ""}`.toLowerCase();
+              return fullText.includes(debouncedSearch.toLowerCase());
+            })
+          : result;
+
+        setPosts(filteredBySearch);
+      } catch (err) {
+        console.error("Failed to fetch posts:", err);
+      }
+    };
+
+    fetchPosts();
+  }, [debouncedSearch]);
+
+  // Filter by tags if any selected
   const filteredPosts = selected.length
-    ? data?.filter((post) =>
+    ? posts.filter((post) =>
         post.tags.some((tag: string) => selected.includes(tag))
       )
-    : data;
+    : posts;
 
   return (
     <>
@@ -75,21 +100,24 @@ function Library() {
           </Stack>
         </BackgroundImage>
       </div>
+
       <Container my="lg">
-        <Flex></Flex>
         <Autocomplete
           flex={2}
-          placeholder="Search"
+          onChange={setSearch}
+          placeholder="Search articles..."
           leftSection={<IconSearch size={16} stroke={1.5} />}
           visibleFrom="xs"
+          value={search}
         />
+
         <Text size="sm" mt="sm" c="dimmed">
           Filters
         </Text>
+
         <Group my="sm">
           {badges.map((badge) => {
             const isSelected = selected.includes(badge.value);
-
             return (
               <Pill
                 key={badge.value}
@@ -107,14 +135,15 @@ function Library() {
             );
           })}
         </Group>
+
         <Grid>
-          {filteredPosts?.map((post) => (
+          {filteredPosts.map((post) => (
             <Grid.Col key={post._id} span={4}>
               <ArticleCard
                 title={post.title}
                 body={post.body}
                 tags={post.tags}
-                onClick={() => onClickCard(post.slug.current)}
+                onClick={() => navigate(`/post/${post.slug.current}`)}
               />
             </Grid.Col>
           ))}
