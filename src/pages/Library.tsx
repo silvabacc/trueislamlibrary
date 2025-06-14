@@ -44,16 +44,23 @@ function Library() {
   });
 
   const [selected, setSelected] = useState<string[]>([]);
+  const [search, setSearch] = useState<string>("");
 
   const onClickCard = (slug: string) => {
     navigate(`/post/${slug}`);
   };
 
-  const filteredPosts = selected.length
-    ? data?.filter((post) =>
-        post.tags.some((tag: string) => selected.includes(tag))
-      )
-    : data;
+  const filteredPosts = data?.filter((post) => {
+    const matchesTags = selected.length
+      ? post.tags.some((tag: string) => selected.includes(tag))
+      : true;
+
+    const matchesSearch = search
+      ? post.title.toLowerCase().includes(search.toLowerCase())
+      : true;
+
+    return matchesTags && matchesSearch;
+  });
 
   return (
     <>
@@ -76,10 +83,10 @@ function Library() {
         </BackgroundImage>
       </div>
       <Container my="lg">
-        <Flex></Flex>
         <Autocomplete
           flex={2}
           placeholder="Search"
+          onChange={setSearch}
           leftSection={<IconSearch size={16} stroke={1.5} />}
           visibleFrom="xs"
         />
