@@ -116,7 +116,7 @@ function Library() {
         </Group>
         <Grid>
           {filteredPosts?.map((post) => (
-            <Grid.Col key={post._id} span={4}>
+            <Grid.Col key={post._id} span={{ base: 12, sm: 6, md: 4 }}>
               <ArticleCard
                 title={post.title}
                 body={post.body}

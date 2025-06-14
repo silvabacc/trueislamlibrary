@@ -40,7 +40,12 @@ function PostPage() {
 
   return (
     <Container display={"flex"} size={"xl"}>
-      <Group gap={12} className={classes.tags__wrapper} pb={12}>
+      <Group
+        gap={12}
+        className={classes.tags__wrapper}
+        pb={12}
+        visibleFrom="xs"
+      >
         <Stack w={320}>
           <Text size="sm" ml={4} mt="sm" my="sm" c="dimmed">
             Tags
@@ -67,7 +72,8 @@ function PostPage() {
           })}
         />
       </Group>
-      <div className={classes.content}>
+      <Flex direction={"column"} className={classes.content}>
+        <h1>{data.title}</h1>
         <PortableText
           content={data.body}
           serializers={{
@@ -92,7 +98,7 @@ function PostPage() {
             blockquote: ({ children }) => <Blockquote>{children}</Blockquote>,
           }}
         />
-      </div>
+      </Flex>
     </Container>
   );
 }
