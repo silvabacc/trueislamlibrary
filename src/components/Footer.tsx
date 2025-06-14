@@ -11,7 +11,7 @@ export function FooterSocial() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <Text>True Islam Library</Text>
+        <Text fw={800}>True Islam Library</Text>
         <Group
           gap={0}
           className={classes.links}

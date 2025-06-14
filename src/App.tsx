@@ -2,10 +2,16 @@ import "./App.css";
 import "@mantine/core/styles.css";
 import "@mantine/nprogress/styles.css";
 
-import { createTheme, MantineProvider } from "@mantine/core";
-import { RouterProvider } from "react-router";
-import { router } from "./router";
+import { AppShell, createTheme, MantineProvider } from "@mantine/core";
+import { BrowserRouter, Route, Routes } from "react-router";
+import { headerRoutes } from "./router";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import Home from "./pages/Home";
+import Post from "./pages/Post";
+import StudioRoute from "./pages/Studio";
+import Layout from "./layout/Layout";
+import { Header } from "./Header";
+import { FooterSocial } from "./components/Footer";
 
 const primaryColor = "#005013";
 const queryClient = new QueryClient();
@@ -32,7 +38,33 @@ function App() {
   return (
     <MantineProvider theme={theme} defaultColorScheme="dark">
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <BrowserRouter>
+          <AppShell
+            header={{ height: 56 }}
+            footer={{ height: 56 }}
+            pt="md"
+            pb="md"
+          >
+            <AppShell.Header>
+              <Header />
+            </AppShell.Header>
+            <AppShell.Main>
+              <Routes>
+                {headerRoutes.map((route) => (
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    element={route.element}
+                  />
+                ))}
+                <Route path="/studio" element={<StudioRoute />} />
+                <Route path="/post" element={<Home />} />
+                <Route path="/post/:slug" element={<Post />} />
+              </Routes>
+            </AppShell.Main>
+          </AppShell>
+          <FooterSocial />
+        </BrowserRouter>
       </QueryClientProvider>
     </MantineProvider>
   );

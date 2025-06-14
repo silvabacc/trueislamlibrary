@@ -18,6 +18,8 @@ import Pill from "../components/Pill";
 import Azhar from "../assets/azhar.webp";
 import { ArticleCard } from "../components/Card";
 import { useNavigate } from "react-router";
+import { useState } from "react";
+import type { Post } from "../types";
 
 const fetchNewPosts = async () => {
   const query = `*[_type == "post"] | order(publishedAt desc)[0...3] {
@@ -35,14 +37,22 @@ const fetchNewPosts = async () => {
 
 export default function Library() {
   const navigate = useNavigate();
-  const { isPending, isError, data, error } = useQuery({
+  const { isPending, isError, data, error } = useQuery<Post[]>({
     queryKey: ["newPosts"],
     queryFn: fetchNewPosts,
   });
 
+  const [selected, setSelected] = useState<string[]>([]);
+
   const onClickCard = (slug: string) => {
     navigate(`/post/${slug}`);
   };
+
+  const filteredPosts = selected.length
+    ? data?.filter((post) =>
+        post.tags.some((tag: string) => selected.includes(tag))
+      )
+    : data;
 
   return (
     <>
@@ -76,25 +86,81 @@ export default function Library() {
           Filters
         </Text>
         <Group my="sm">
-          {badges.map((badge) => (
-            <Pill selectable key={badge.value}>
-              {badge.title}
-            </Pill>
-          ))}
+          {badges.map((badge) => {
+            const isSelected = selected.includes(badge.value);
+
+            return (
+              <Pill
+                key={badge.value}
+                selected={isSelected}
+                onClick={() => {
+                  setSelected((prev) =>
+                    isSelected
+                      ? prev.filter((tag) => tag !== badge.value)
+                      : [...prev, badge.value]
+                  );
+                }}
+              >
+                {badge.title}
+              </Pill>
+            );
+          })}
         </Group>
         <Text size="sm" my="sm" c="dimmed">
           Trending
         </Text>
         <Grid>
-          {data?.map((post) => (
-            <Grid.Col key={post._id} span={4}>
-              <ArticleCard
-                title={post.title}
-                body={post.body}
-                tags={post.tags}
-                onClick={() => onClickCard(post.slug.current)}
-              />
-            </Grid.Col>
+          {filteredPosts?.map((post) => (
+            <>
+              <Grid.Col key={post._id} span={4}>
+                <ArticleCard
+                  title={post.title}
+                  body={post.body}
+                  tags={post.tags}
+                  onClick={() => onClickCard(post.slug.current)}
+                />
+              </Grid.Col>
+              <Grid.Col key={post._id} span={4}>
+                <ArticleCard
+                  title={post.title}
+                  body={post.body}
+                  tags={post.tags}
+                  onClick={() => onClickCard(post.slug.current)}
+                />
+              </Grid.Col>{" "}
+              <Grid.Col key={post._id} span={4}>
+                <ArticleCard
+                  title={post.title}
+                  body={post.body}
+                  tags={post.tags}
+                  onClick={() => onClickCard(post.slug.current)}
+                />
+              </Grid.Col>{" "}
+              <Grid.Col key={post._id} span={4}>
+                <ArticleCard
+                  title={post.title}
+                  body={post.body}
+                  tags={post.tags}
+                  onClick={() => onClickCard(post.slug.current)}
+                />
+              </Grid.Col>{" "}
+              <Grid.Col key={post._id} span={4}>
+                <ArticleCard
+                  title={post.title}
+                  body={post.body}
+                  tags={post.tags}
+                  onClick={() => onClickCard(post.slug.current)}
+                />
+              </Grid.Col>{" "}
+              <Grid.Col key={post._id} span={4}>
+                <ArticleCard
+                  title={post.title}
+                  body={post.body}
+                  tags={post.tags}
+                  onClick={() => onClickCard(post.slug.current)}
+                />
+              </Grid.Col>
+            </>
           ))}
         </Grid>
       </Container>

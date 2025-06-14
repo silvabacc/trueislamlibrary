@@ -1,19 +1,11 @@
-import {
-  Box,
-  Burger,
-  Button,
-  Container,
-  Flex,
-  Group,
-  Menu,
-} from "@mantine/core";
+import { Burger, Button, Flex, Group, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
 import TrueIslamLibraryIcon from "./assets/trueislam.webp";
-import { headerRoutes, routes } from "./router";
+import { headerRoutes } from "./router";
 import { NavLink } from "react-router";
 
-export function HeaderSearch() {
+export function Header() {
   const [opened, { toggle }] = useDisclosure(false);
 
   const items = headerRoutes.map((route) => (
@@ -37,7 +29,7 @@ export function HeaderSearch() {
               />
             </Menu.Target>
             <Menu.Dropdown className={classes.burger}>
-              {[...headerRoutes, ...routes].map((route, index) => (
+              {[...headerRoutes].map((route, index) => (
                 <div key={`${route.title}-${index}`}>
                   <NavLink to={route.path}>
                     <Menu.Item onClick={toggle}>{route.title}</Menu.Item>
