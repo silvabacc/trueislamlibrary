@@ -1,6 +1,5 @@
 import { Container, Flex, Text } from "@mantine/core";
 import PageTransition from "../animations/PageTransition";
-import Bis from "../assets/Bismillah_Calligraphy.svg";
 import classes from "./Home.module.css";
 
 function Home() {
