@@ -6,7 +6,7 @@ import { AppShell, createTheme, MantineProvider } from "@mantine/core";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import { headerRoutes } from "./router";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import Home from "./pages/Home";
+import Home from "./pages/Library";
 import Post from "./pages/Post";
 import StudioRoute from "./pages/Studio";
 import { Header } from "./Header";
