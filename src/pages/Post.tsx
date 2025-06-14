@@ -16,8 +16,8 @@ import Pill from "../components/Pill";
 import { type Post } from "../types";
 import { badges } from "../utils";
 import classes from "./Post.module.css";
+import { LinkPreview } from "@dhaiwat10/react-link-preview";
 
-// 🛠️ Fixed: Pass slug to Sanity query
 const fetchPost = async (slug: string) => {
   const query = `*[_type == "post" && slug.current == $slug][0]`;
   const params = { slug };
@@ -71,6 +71,17 @@ function PostPage() {
         <PortableText
           content={data.body}
           serializers={{
+            link: ({ children }) => (
+              <LinkPreview
+                url={children}
+                width={400}
+                fallback={
+                  <a href={children} target="_target">
+                    {children}
+                  </a>
+                }
+              />
+            ),
             youtube: ({ url }) => {
               return (
                 <div className={classes.youtube}>
