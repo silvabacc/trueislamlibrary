@@ -17,6 +17,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 
   --primary-color: #005013;
+  --highlight-color: #40a15e;
   --secondary-background: #2f2f2f;
 }
 
@@ -39,7 +40,7 @@ h4,
 h5,
 h6 {
   line-height: 1.1;
-  color: #40a15e;
+  color: var(--highlight-color);
 }
 
 button {
