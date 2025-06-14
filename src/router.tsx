@@ -15,7 +15,7 @@ export const headerRoutes = [
   },
   {
     path: "/search",
-    title: "Search Library",
+    title: "Search ",
     element: SearchLibrary,
   },
   {

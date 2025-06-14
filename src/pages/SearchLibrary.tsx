@@ -149,7 +149,7 @@ function SearchLibrary() {
 
   return (
     <Container>
-      <h1>Search library</h1>
+      <h1>Search</h1>
       <Autocomplete
         flex={2}
         onChange={setSearch}
