@@ -7,6 +7,7 @@ import {
   Flex,
   BackgroundImage,
   Stack,
+  Divider,
 } from "@mantine/core";
 import classes from "./Home.module.css";
 
@@ -106,9 +107,6 @@ export default function Library() {
             );
           })}
         </Group>
-        <Text size="sm" my="sm" c="dimmed">
-          Trending
-        </Text>
         <Grid>
           {filteredPosts?.map((post) => (
             <>
