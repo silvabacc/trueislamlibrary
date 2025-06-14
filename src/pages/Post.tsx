@@ -47,7 +47,7 @@ function PostPage() {
           </Text>
           <Flex wrap={"wrap"} gap={4}>
             {data.tags.map((tag) => (
-              <Pill key={tag}>
+              <Pill key={tag} isSelectable={false}>
                 {badges.find((b) => b.value === tag)?.title}
               </Pill>
             ))}
