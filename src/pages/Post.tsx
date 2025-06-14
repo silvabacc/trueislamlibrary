@@ -25,7 +25,7 @@ const fetchPost = async (slug: string) => {
   return post;
 };
 
-export default function Post() {
+function PostPage() {
   const { slug } = useParams<{ slug: string }>();
 
   const { data, error, isPending, isError } = useQuery<Post>({
@@ -85,3 +85,5 @@ export default function Post() {
     </Container>
   );
 }
+
+export default PostPage;

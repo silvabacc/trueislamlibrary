@@ -21,6 +21,7 @@ import { ArticleCard } from "../components/Card";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import type { Post } from "../types";
+import PageTransition from "../animations/PageTransition";
 
 const fetchNewPosts = async () => {
   const query = `*[_type == "post"] | order(publishedAt desc)[0...3] {
@@ -36,7 +37,7 @@ const fetchNewPosts = async () => {
   return posts;
 };
 
-export default function Library() {
+function Library() {
   const navigate = useNavigate();
   const { isPending, isError, data, error } = useQuery<Post[]>({
     queryKey: ["newPosts"],
@@ -165,3 +166,5 @@ export default function Library() {
     </>
   );
 }
+
+export default PageTransition(Library);
