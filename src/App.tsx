@@ -14,7 +14,7 @@ import { FooterSocial } from "./components/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import ScrollToTop from "./components/ScrollToTop";
 
-const primaryColor = "#005013";
+const primaryColor = "#317B42";
 const queryClient = new QueryClient();
 
 function App() {

@@ -5,7 +5,7 @@ export const headerRoutes = [
   {
     path: "/",
     title: "Home",
-    element: <Home />,
+    element: Home,
   },
   {
     path: "/library",

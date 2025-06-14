@@ -40,6 +40,33 @@ function PostPage() {
 
   return (
     <Container display={"flex"} size={"xl"}>
+      <Group gap={12} className={classes.tags__wrapper} pb={12}>
+        <Stack w={320}>
+          <Text size="sm" ml={4} mt="sm" my="sm" c="dimmed">
+            Tags
+          </Text>
+          <Flex wrap={"wrap"} gap={4}>
+            {data.tags.map((tag) => (
+              <Pill key={tag}>
+                {badges.find((b) => b.value === tag)?.title}
+              </Pill>
+            ))}
+          </Flex>
+        </Stack>
+        <Text ml={4} size="sm" my="xs" c="dimmed">
+          Table of contents
+        </Text>
+        <TableOfContents
+          variant="filled"
+          scrollSpyOptions={{
+            selector: "h1, h2, h3, h4, h5, h6",
+          }}
+          getControlProps={({ data }) => ({
+            onClick: () => data.getNode().scrollIntoView(),
+            children: data.value,
+          })}
+        />
+      </Group>
       <div className={classes.content}>
         <PortableText
           content={data.body}
@@ -55,33 +82,6 @@ function PostPage() {
           }}
         />
       </div>
-      <Group gap={12} className={classes.tags__wrapper} pb={12}>
-        <Stack w={320}>
-          <Text size="sm" mt="sm" my="sm" c="dimmed">
-            Tags
-          </Text>
-          <Flex wrap={"wrap"} gap={4}>
-            {data.tags.map((tag) => (
-              <Pill key={tag}>
-                {badges.find((b) => b.value === tag)?.title}
-              </Pill>
-            ))}
-          </Flex>
-        </Stack>
-        <Text size="sm" my="xs" c="dimmed">
-          Table of contents
-        </Text>
-        <TableOfContents
-          variant="none"
-          scrollSpyOptions={{
-            selector: "h1, h2, h3, h4, h5, h6",
-          }}
-          getControlProps={({ data }) => ({
-            onClick: () => data.getNode().scrollIntoView(),
-            children: data.value,
-          })}
-        />
-      </Group>
     </Container>
   );
 }

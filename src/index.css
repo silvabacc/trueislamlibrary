@@ -17,6 +17,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 
   --primary-color: #005013;
+  --secondary-background: #2f2f2f;
 }
 
 a {
@@ -38,6 +39,7 @@ h4,
 h5,
 h6 {
   line-height: 1.1;
+  color: #40a15e;
 }
 
 button {
@@ -58,17 +60,4 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: var(--primary-color);
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

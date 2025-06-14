@@ -15,5 +15,9 @@ const config = defineConfig({
   },
 });
 export default function StudioRoute() {
-  return <Studio config={config} />;
+  return (
+    <div style={{ height: "100vh" }}>
+      <Studio config={config} />;
+    </div>
+  );
 }
